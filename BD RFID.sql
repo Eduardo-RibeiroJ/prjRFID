@@ -47,3 +47,9 @@ CONSTRAINT PK_CONTRATO_PRODUTO PRIMARY KEY (idContrato, rfidProduto)
 INSERT INTO `tbItensContrato`(`idContrato`, `rfidProduto`, `horaSaida`, `horaEntrada`, `obs`) VALUES (45612,12345,"2019-05-01 14:00:20",NULL,NULL);
 INSERT INTO `tbItensContrato`(`idContrato`, `rfidProduto`, `horaSaida`, `horaEntrada`, `obs`) VALUES (45612,12346,"2019-05-01 14:00:25",NULL,NULL);
 INSERT INTO `tbItensContrato`(`idContrato`, `rfidProduto`, `horaSaida`, `horaEntrada`, `obs`) VALUES (45612,12347,"2019-05-01 14:00:40",NULL,NULL);
+
+CREATE TABLE tbTemp (
+idTemp int NOT NULL AUTO_INCREMENT,
+etiqueta varchar (25) NOT NULL,
+CONSTRAINT PK_IDTEMP PRIMARY KEY (IdTemp)
+);
