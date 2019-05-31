@@ -2,20 +2,23 @@
 
 	class Etiqueta {
 
-		private $rfid = NULL;
-		private $idProduto = NULL;
+		private $rfid;
+		private $idProduto ;
 
 
-		function __construct ($rfid, $idProduto) {
+		public function __construct ($rfid, $idProduto) {
 			$this->rfid = $rfid;
 			$this->idProduto = $idProduto;
 		}
 
-
-		function getRfid() {
+		public function __destruct() {
+        //Remove os dados da classe
+    	}
+    	
+		public function getRfid() {
 			return $this->rfid;
 		}
-		function getIdProduto() {
+		public function getIdProduto() {
 			return $this->idProduto;
 		}
 	}

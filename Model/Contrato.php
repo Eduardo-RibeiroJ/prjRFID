@@ -2,24 +2,27 @@
 
 	class Contrato {
 
-		private $idContrato = NULL;
-		private $status = NULL;
+		private $idContrato;
+		private $status;
 
 
-		function __construct ($idContrato, $status) {
+		public function __construct ($idContrato, $status) {
 			$this->idContrato = $idContrato;
 			$this->status = $status;
 		}
 
+		public function __destruct() {
+        //Remove os dados da classe
+    	}
 
-		function setStatus ($status) {
+		public function setStatus ($status) {
 			$this->status = $status;
 		}
 		
-		function getIdContrato() {
+		public function getIdContrato() {
 			return $this->idContrato;
 		}
-		function getStatus() {
+		public function getStatus() {
 			return $this->status;
 		}
 	}

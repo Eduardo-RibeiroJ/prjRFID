@@ -1,35 +1,51 @@
 <?php
 
-	class Etiqueta {
+	class ItensContrato {
 
-		private $idContrato = NULL;
-		private $rfidProduto = NULL;
-		private $horaSaida = NULL;
-		private $horaEntrada = NULL;
-		private $obs = NULL;
+		private $idContrato;
+		private $rfidProduto;
+		private $horaSaida;
+		private $horaEntrada;
+		private $obs;
 
 
-		function __construct ($idContrato, $rfidProduto, $horaSaida, $horaEntrada, $obs) {
+		public function __construct ($idContrato, $rfidProduto, $horaSaida) {
 			$this->idContrato = $idContrato;
 			$this->rfidProduto = $rfidProduto;
 			$this->horaSaida = $horaSaida;
-			$this->horaEntrada = $horaEntrada;
-			$this->obs = $obs;
 		}
 
-		function setHoraSaida ($horaSaida) {
+		public function __destruct() {
+        //Remove os dados da classe
+    	}
+
+		public function setHoraSaida ($horaSaida) {
 			$this->horaSaida = $horaSaida;
 		}
-
-		function setHoraEntrada ($horaEntrada) {
-			$this->setHoraEntrada = $horaEntrada;
+		public function getHoraSaida() {
+			return $this->horaSaida;
 		}
 
-		function getRfid() {
+		public function setHoraEntrada ($horaEntrada) {
+			$this->horaEntrada = $horaEntrada;
+		}
+		public function getHoraEntrada() {
+			return $this->horaEntrada;
+		}
+
+		public function setObs ($obs) {
+			$this->obs = $obs;
+		}
+		public function getHoraEntrada() {
+			return $this->horaEntrada;
+		}
+
+		public function getRfid() {
 			return $this->rfid;
 		}
-		function getIdProduto() {
+		public function getIdProduto() {
 			return $this->idProduto;
 		}
+
 	}
 ?>
