@@ -23,7 +23,7 @@
 										<li>
 											<span class="opener">Produtos</span>
 											<ul>
-												<li><a href="#">Incluir Produto</a></li>
+												<li><a href="inserir_produto.php">Inserir Produto</a></li>
 												<li><a href="#">Pesquisar Produto</a></li>
 												<li><a href="#">Alterar Produto</a></li>
 												<li><a href="#">Excluir Produto</a></li>
