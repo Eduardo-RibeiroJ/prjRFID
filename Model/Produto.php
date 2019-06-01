@@ -1,7 +1,8 @@
 <?php
   
 class Produto {
-  
+  	
+  	private $idProduto;
     private $nomeProduto;
     private $personalizado;
     private $cor;
@@ -10,7 +11,7 @@ class Produto {
     private $quantDisponivel;
   
 
-    public function __construct ($nomeProduto, $personalizado, $cor, $obs, $quantTotal) {
+    public function inserirProduto ($nomeProduto, $personalizado, $cor, $obs, $quantTotal) {
         $this->nomeProduto = $nomeProduto;
         $this->personalizado = $personalizado;
         $this->cor = $cor;
@@ -20,6 +21,13 @@ class Produto {
 
     public function __destruct() {
         //Remove os dados da classe
+    }
+
+    public function setIdProduto($idProduto) {
+        $this->idProduto = $idProduto;
+    }
+    public function getIdProduto() {
+        return $this->idProduto;
     }
 
     public function setNomeProduto($nomeProduto) {

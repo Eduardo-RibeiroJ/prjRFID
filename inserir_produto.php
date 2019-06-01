@@ -7,7 +7,9 @@ include_once "Controller\DaoProduto.php";
 if(isset($_POST['btnInserir'])){
 
   $cn = new Conexao();
-  $cp = new Produto(
+  $cp = new Produto();
+
+  $cp->inserirProduto(
     $_POST['txtNomeProduto'],
     $_POST['ckbPersonalizado'] = ( isset($_POST['ckbPersonalizado']) ) ? 1 : 0,
     $_POST['cbbCor'],

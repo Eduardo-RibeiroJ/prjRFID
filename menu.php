@@ -24,7 +24,7 @@
 											<span class="opener">Produtos</span>
 											<ul>
 												<li><a href="inserir_produto.php">Inserir Produto</a></li>
-												<li><a href="#">Pesquisar Produto</a></li>
+												<li><a href="pesquisar_produto.php">Pesquisar Produto</a></li>
 												<li><a href="#">Alterar Produto</a></li>
 												<li><a href="#">Excluir Produto</a></li>
 												<!-- Inventário Consiste em uma lista geral dos produtos -->
