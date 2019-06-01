@@ -9,15 +9,15 @@ quantDisponivel int NOT NULL,
 CONSTRAINT PK_IDPRODUTO PRIMARY KEY (idProduto)
 );
 
-INSERT INTO `tbprodutos`(`nomeProd`, `personalizado`, `cor`, `obs`, `quantTotal`, `quantDisponivel`) VALUES ("Cadeira",1,"Preta",NULL,50,40);
-INSERT INTO `tbprodutos`(`nomeProd`, `personalizado`, `cor`, `obs`, `quantTotal`, `quantDisponivel`) VALUES ("Mesa",0,"Preta",NULL,30,30);
+INSERT INTO `tbproduto`(`nomeProd`, `personalizado`, `cor`, `obs`, `quantTotal`, `quantDisponivel`) VALUES ("Cadeira",1,"Preta",NULL,50,40);
+INSERT INTO `tbproduto`(`nomeProd`, `personalizado`, `cor`, `obs`, `quantTotal`, `quantDisponivel`) VALUES ("Mesa",0,"Preta",NULL,30,30);
 
 
 
 create table tbEtiqueta (
 rfid varchar (30) NOT NULL,
 idProduto int NOT NULL,
-CONSTRAINT FK_IDPRODUTO FOREIGN KEY (idProduto) REFERENCES tbProduto (ID_idProduto)
+CONSTRAINT FK_IDPRODUTO FOREIGN KEY (idProduto) REFERENCES tbProduto (idProduto)
 );
 
 INSERT INTO `tbetiqueta`(`rfid`, `idProduto`) VALUES (12345,1);
@@ -38,8 +38,8 @@ INSERT INTO `tbContrato`(`idContrato`, `status`) VALUES (48496,"E");
 create table tbItensContrato (
 idContrato int NOT NULL,
 rfidProduto varchar (30) NOT NULL,
-horaSaida timestamp,
-horaEntrada timestamp,
+horaSaida datetime,
+horaEntrada datetime,
 obs varchar (100),
 CONSTRAINT PK_CONTRATO_PRODUTO PRIMARY KEY (idContrato, rfidProduto)
 );
