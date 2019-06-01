@@ -3,10 +3,8 @@
 include_once "Model\Conexao.php";
 include_once "Model\Produto.php";
 include_once "Controller\DaoProduto.php";
-
+include_once 'header.php'
 ?>
-
-<?php include 'header.php'; ?>
 
 					<!-- Conteúdo -->
 								<section>
@@ -45,7 +43,7 @@ include_once "Controller\DaoProduto.php";
 												
 												<center>
 													<td> <a href="atualizar_produto.php?ID=<?=$reg["idProduto"];?>">Editar</a> </td>
-													<td> <a href="apagar_produto.php?ID=<?=$reg["idProduto"];?>">Apagar</a> </td>
+													<td> <a href="apagar_produto.php?idProduto=<?=$reg["idProduto"];?>">Apagar</a> </td>
 												</center>
 
 											</tr>

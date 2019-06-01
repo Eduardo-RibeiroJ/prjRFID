@@ -19,9 +19,7 @@ if(isset($_POST['btnInserir'])){
   $daoProd = new DaoProduto($cn);
 
   $daoProd->Inserir($cp);
-  	echo "<script> alert('Cadastro Efetuado com sucesso!'); window.location.replace('index.php'); </script>";
-
-
+  	echo "<script> alert('Produto cadastrado!'); window.location.replace('index.php'); </script>";
 
 }
 ?>

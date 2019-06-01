@@ -34,16 +34,14 @@ class DaoProduto
 
     public function listarProdutos(Produto $produto) {
 
-        $mysqli = new mysqli("localhost", "root", "", "bd_rfid");
-
         if ($produto->getIdProduto() == NULL) {
 
-           $SQL = $mysqli->query("SELECT * FROM tbProduto");
+           $SQL = $this->db->getConection()->query("SELECT * FROM tbProduto");
            return $SQL;
 
         } else {
 
-           $SQL = $this->db->query("SELECT * FROM tbProduto WHERE idProduto ='".$produto->getIdProduto()."'");
+           $SQL = $this->db->getConection()->query("SELECT * FROM tbProduto WHERE idProduto ='".$produto->getIdProduto()."'");
            $rs = $SQL->fetch_array();
            $produto->setIdProduto($rs["idProduto"]);
            $produto->setNomeProduto($rs["nomeProd"]);
@@ -54,6 +52,16 @@ class DaoProduto
            $produto->setQuantDisponivel($rs["quantDisponivel"]);
 
         }
+     }
+
+     public function apagarProduto(Produto $produto) {
+
+        $SQL = $this->db->getConection()->prepare("DELETE FROM tbProduto WHERE idProduto = ?");
+        $SQL->bind_param("i", $P1);
+        $P1 = $produto->getIdProduto();
+        $SQL->execute();
+        
+        return true;
 
      }
 }
