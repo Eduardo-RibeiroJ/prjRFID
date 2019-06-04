@@ -19,7 +19,7 @@ if(isset($_POST['btnInserir'])){
   $daoProd = new DaoProduto($cn);
 
   $daoProd->Inserir($cp);
-  	echo "<script> alert('Produto cadastrado!'); window.location.replace('index.php'); </script>";
+  	echo "<script> alert('Produto cadastrado!'); window.location.replace('produtos_lista.php'); </script>";
 
 }
 ?>
@@ -35,7 +35,7 @@ if(isset($_POST['btnInserir'])){
 								<table border=0>
 									<tr>
 										<td>
-											<form action="inserir_produto.php" method="post">
+											<form action="produto_inserir.php" method="post">
 
 												<p>
 												    <label for="txtNomeProduto">Nome do Produto</label>

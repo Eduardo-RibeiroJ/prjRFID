@@ -9,7 +9,14 @@ include_once 'header.php'
 					<!-- Conteúdo -->
 								<section>
 									<header class="main">
-										<h1>Listar Produtos</h1>
+										<div class="row">
+											<div class="col-8">
+												<h1>Listar Produtos</h1>
+											</div>
+											<div class="col-4">
+												<a class="button" href="produto_inserir.php" >Inserir Novo Produto</a>
+										    </div>
+										</div>
 									</header>
 									<center>
 										<table border=0>
@@ -42,7 +49,7 @@ include_once 'header.php'
 												<td> <?=$reg["quantDisponivel"];?> </td>
 												
 												<center>
-													<td> <a href="atualizar_produto.php?ID=<?=$reg["idProduto"];?>">Editar</a> </td>
+													<td> <a href="produto_editar.php?idProduto=<?=$reg["idProduto"];?>">Editar</a> </td>
 													<td> <a href="apagar_produto.php?idProduto=<?=$reg["idProduto"];?>">Apagar</a> </td>
 												</center>
 

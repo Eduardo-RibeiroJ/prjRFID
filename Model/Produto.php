@@ -18,6 +18,14 @@ class Produto {
         $this->obs = $obs;
         $this->quantTotal = $quantTotal;
     }
+    public function atualizarProduto ($idProduto, $nomeProduto, $personalizado, $cor, $obs, $quantTotal) {
+        $this->idProduto = $idProduto;
+        $this->nomeProduto = $nomeProduto;
+        $this->personalizado = $personalizado;
+        $this->cor = $cor;
+        $this->obs = $obs;
+        $this->quantTotal = $quantTotal;
+    }
 
     public function __destruct() {
         //Remove os dados da classe
