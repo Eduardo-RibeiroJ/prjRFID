@@ -1,8 +1,16 @@
 <?php 
 
 include_once "Model\Conexao.php";
-include_once "Model\Contrato.php";
-include_once 'header.php'
+include_once "Controller\MovimentacaoController.php";
+
+if(isset($_GET['idContrato']) && isset($_GET['acao'])) { 
+
+		echo "<script> alert('Movimentaçães deletada!'); window.location.replace('movimentacao_lista.php'); </script>";
+	 
+}
+
+include_once 'header.php';
+
 ?>
 
 					<!-- Conteúdo -->
@@ -18,25 +26,31 @@ include_once 'header.php'
 										<table border=0>
 											<tr>
 												<td>N° Contrato</td>
+												<td>Total de Produto</td>
 												<td>Situação</td>
 												<td> </td>
 												<td> </td>
 											</tr>
 
-											<?php 
-											?>
-											<tr>
-												<td>  ---  </td>
-												<td>  --- </td>		
+											
+												<?php  
+												 $dados = MovimentacaoController::getMovimentacao(); 
+												 while($linha = mysqli_fetch_array($dados)){
+												 ?>
+												<td> <?=$linha["idContrato"];?> </td> 
+												<td> <?=$linha["total"];?> </td> 
+												<td> <?=$linha["status"];?> </td> 
 												
 												<center>
-													<td> <a href="movimentacao_editar.php?idProduto=1">Editar</a> </td>
+													<td> <a href="#">Editar</a> </td>
 													<td> <a href="?acao=excluir&idContrato=1">Apagar</a> </td>
 												</center>
 
 											</tr>
 												
-											<?php  
+											<?php 
+
+											} 
 
 											?>
 

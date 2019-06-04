@@ -1,5 +1,4 @@
-<!-- Barra lateral (Menu de opções) -->
-<!-- Ao alterar uma informação neste arquivo, todas as páginas oriúndas do modelo serão alteradas -->
+
 					<div id="sidebar">
 						<div class="inner">
 						
@@ -9,23 +8,28 @@
 										<h2>Menu</h2>
 									</header>
 									<ul>
-										<li><a href="index.php">Home</a></li>
-										<li>											
-											<a href="movimentacao_lista.php">Movimentações</a>
+										<li>
+											<a href="index.php">Home</a>
 										</li>
 										<li>
-											<a href="produtos_lista.php">Produtos</a>											
-										</li>
-										<li>
-											<span class="opener">Etiquetas</span>
+											<span class="opener">Movimentações</span>
 											<ul>
-												<li><a href="#">Incluir Nova </a></li>
-												<li><a href="#">Pesquisar Etiqueta</a></li>
-												<li><a href="#">Alterar Etiqueta</a></li>
-												<li><a href="#">Excluir Etiqueta</a></li>
-												<li><a href="#">Listagem geral</a></li>
+												<li><a href="movimentacao.php">Iniciar Movimentação</a></li>
+												<li><a href="movimentacao_lista.php">Listagem</a></li>
+												
 											</ul>
 										</li>
+
+
+										<li>
+											<a href="produtos_lista.php">Produtos</a>									
+										</li>
+										<li>
+											<a href="etiquetas_lista.php">Etiquetas</a>											
+										</li>
+										<!-- 
+											PODEMOS DEIXAR PARA UMA SEGUNDA ETAPA
+
 										<li>
 											<span class="opener">Relatórios</span>
 											<ul>
@@ -34,7 +38,7 @@
 												<li><a href="#">Por Data</a></li>
 												
 											</ul>
-										</li>
+										</li> -->
 									</ul>
 								</nav>
 
@@ -58,4 +62,4 @@
 								<footer id="footer">
 									<p class="copyright">&copy; Parque Tecnológico de Sorocaba.</p>
 								</footer>
-<!-- Final da barra lateral -->
+ 
