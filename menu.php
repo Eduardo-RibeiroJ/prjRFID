@@ -10,19 +10,11 @@
 									</header>
 									<ul>
 										<li><a href="index.php">Home</a></li>
-										<li>
-											<span class="opener">Movimentações</span>
-											<ul>
-												<li><a href="movim.php">Realizar Movimentação</a></li>
-												<li><a href="#">Alterar Dados</a></li>
-												<li><a href="#">Excluir Movimentação</a></li>
-												<li><a href="#">Listagem</a></li>
-												
-											</ul>
+										<li>											
+											<a href="movimentacao_lista.php">Movimentações</a>
 										</li>
 										<li>
-											<a href="produtos_lista.php">Produtos</a>
-											
+											<a href="produtos_lista.php">Produtos</a>											
 										</li>
 										<li>
 											<span class="opener">Etiquetas</span>

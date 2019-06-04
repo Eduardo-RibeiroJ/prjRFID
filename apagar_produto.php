@@ -13,7 +13,7 @@ if(isset($_GET['idProduto'])) {
 	$daoProd = new DaoProduto($cn);
 
 	if($daoProd->apagarProduto($cp)) {
- 		echo "<script> alert('Produto deletado!'); window.location.replace('pesquisar_produto.php'); </script>";
+ 		echo "<script> alert('Produto deletado!'); window.location.replace('produto_lista.php'); </script>";
  	}
 }
 

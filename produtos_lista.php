@@ -3,6 +3,21 @@
 include_once "Model\Conexao.php";
 include_once "Model\Produto.php";
 include_once "Controller\DaoProduto.php";
+
+if(isset($_GET['idProduto']) && isset($_GET['acao'])) {
+
+	$cn = new Conexao();
+	$cp = new Produto();
+
+	$cp->setIdProduto($_GET["idProduto"]);
+	$daoProd = new DaoProduto($cn);
+
+	if($daoProd->apagarProduto($cp)) {
+ 		echo "<script> alert('Produto deletado!'); window.location.replace('produtos_lista.php'); </script>";
+ 	}
+}
+
+
 include_once 'header.php'
 ?>
 
@@ -50,7 +65,7 @@ include_once 'header.php'
 												
 												<center>
 													<td> <a href="produto_editar.php?idProduto=<?=$reg["idProduto"];?>">Editar</a> </td>
-													<td> <a href="apagar_produto.php?idProduto=<?=$reg["idProduto"];?>">Apagar</a> </td>
+													<td> <a href="?acao=1&idProduto=<?=$reg["idProduto"];?>">Apagar</a> </td>
 												</center>
 
 											</tr>
