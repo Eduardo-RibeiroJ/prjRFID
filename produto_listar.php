@@ -2,23 +2,22 @@
 
 include_once "Model\Conexao.php";
 include_once "Model\Produto.php";
-include_once "Controller\DaoProduto.php";
+include_once "Controller\ProdutoController.php";
 
-if(isset($_GET['idProduto']) && isset($_GET['acao'])) {
+$cn = new Conexao();
+$cp = new Produto();
 
-	$cn = new Conexao();
-	$cp = new Produto();
+if(isset($_GET['apagar']) && isset($_GET['idProduto'])) {
 
 	$cp->setIdProduto($_GET["idProduto"]);
-	$daoProd = new DaoProduto($cn);
+	$pc = new ProdutoController($cn);
+	$pc->Apagar($cp);
 
-	if($daoProd->apagarProduto($cp)) {
- 		echo "<script> alert('Produto deletado!'); window.location.replace('produtos_lista.php'); </script>";
- 	}
+	echo "<script> alert('Produto deletado!'); window.location.replace('produto_listar.php'); </script>";
 }
 
 
-include_once 'header.php'
+include_once "header.php";
 ?>
 
 					<!-- Conteúdo -->
@@ -29,7 +28,7 @@ include_once 'header.php'
 												<h1>Listar Produtos</h1>
 											</div>
 											<div class="col-4">
-												<a class="button" href="produto_inserir.php" >Inserir Novo Produto</a>
+												<a class="button" href="produto_inserir.php">Inserir Novo Produto</a>
 										    </div>
 										</div>
 									</header>
@@ -50,10 +49,11 @@ include_once 'header.php'
 											<?php
 												$cn = new Conexao();
 												$cp = new Produto();
-												$daoProd = new DaoProduto($cn);
-												$query = $daoProd->listarProdutos($cp);
+												$pc = new ProdutoController($cn);
+												$query = $pc->Listar($cp);
 												while($reg = $query->fetch_array()) {
 											?>
+
 											<tr>
 												<td> <?=$reg["idProduto"];?> </td>
 												<td> <?=$reg["nomeProd"];?> </td>		
@@ -64,10 +64,9 @@ include_once 'header.php'
 												<td> <?=$reg["quantDisponivel"];?> </td>
 												
 												<center>
-													<td> <a href="produto_editar.php?idProduto=<?=$reg["idProduto"];?>">Editar</a> </td>
-													<td> <a href="?acao=1&idProduto=<?=$reg["idProduto"];?>">Apagar</a> </td>
+													<td> <a href="produto_alterar.php?idProduto=<?=$reg["idProduto"];?>">Alterar</a> </td>
+													<td> <a href="?idProduto=<?=$reg["idProduto"];?>&apagar=1">Apagar</a> </td>
 												</center>
-
 											</tr>
 												
 											<?php 
@@ -75,11 +74,6 @@ include_once 'header.php'
 											}
 
 											?>
-
-											<tr>
-
-
-											</tr>	
 										</table>
 									</center>
 								</section>

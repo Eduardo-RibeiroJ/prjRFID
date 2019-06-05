@@ -2,7 +2,7 @@
 
 include_once "Model\Conexao.php";
 
-class DaoProduto
+class ProdutoController
 {
 
     
@@ -19,7 +19,7 @@ class DaoProduto
         $obs = $produto->getObs();
         $quantTotal = $produto->getQuantTotal();
 
-        $query = "INSERT INTO `tbproduto`(`nomeProd`, `personalizado`, `cor`, `obs`, `quantTotal`, `quantDisponivel`) VALUES (?,?,?,?,?,?);"; 
+        $query = "INSERT INTO tbproduto (nomeProd, personalizado, cor, obs, quantTotal, quantDisponivel) VALUES (?,?,?,?,?,?);"; 
         $stmt = mysqli_prepare($this->db->getConection(), $query);
 
         if($stmt === FALSE){
@@ -41,7 +41,7 @@ class DaoProduto
         $obs = $produto->getObs();
         $quantTotal = $produto->getQuantTotal();
 
-        $query = "UPDATE `tbproduto` SET `nomeProd`=?, `personalizado`=?, `cor`=?, `obs`=?, `quantTotal`=? , `quantDisponivel`=?  WHERE idProduto = ? ";
+        $query = "UPDATE tbproduto SET nomeProd=?, personalizado=?, cor=?, obs=?, quantTotal=? , quantDisponivel=?  WHERE idProduto = ?";
  
         $stmt = mysqli_prepare($this->db->getConection(), $query);
 
@@ -55,7 +55,18 @@ class DaoProduto
 
     }
 
-    public function listarProdutos(Produto $produto) {
+    public function Apagar(Produto $produto) {
+
+        $SQL = $this->db->getConection()->prepare("DELETE FROM tbProduto WHERE idProduto = ?");
+        $SQL->bind_param("i", $P1);
+        $P1 = $produto->getIdProduto();
+        $SQL->execute();
+        
+        return true;
+
+     }
+
+    public function Listar(Produto $produto) {
 
         if ($produto->getIdProduto() == NULL) {
 
@@ -66,28 +77,9 @@ class DaoProduto
 
            $SQL = $this->db->getConection()->query("SELECT * FROM tbProduto WHERE idProduto ='".$produto->getIdProduto()."'");
            return $SQL;
-           //$rs = $SQL->fetch_array();
-           /*$produto->setIdProduto($rs["idProduto"]);
-           $produto->setNomeProduto($rs["nomeProd"]);
-           $produto->setPersonalizado($rs["personalizado"]);
-           $produto->setCor($rs["cor"]);
-           $produto->setObs($rs["obs"]);
-           $produto->setQuantTotal($rs["quantTotal"]);
-           $produto->setQuantDisponivel($rs["quantDisponivel"]);*/
 
         }
-     }
-
-     public function apagarProduto(Produto $produto) {
-
-        $SQL = $this->db->getConection()->prepare("DELETE FROM tbProduto WHERE idProduto = ?");
-        $SQL->bind_param("i", $P1);
-        $P1 = $produto->getIdProduto();
-        $SQL->execute();
-        
-        return true;
-
-     }
+     }     
 }
 
 ?>

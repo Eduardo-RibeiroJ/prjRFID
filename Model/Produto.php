@@ -28,7 +28,7 @@ class Produto {
     }
 
     public function __destruct() {
-        //Remove os dados da classe
+        //Remove os dados da classe após a execução
     }
 
     public function setIdProduto($idProduto) {

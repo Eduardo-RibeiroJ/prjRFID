@@ -2,29 +2,29 @@
 
 include_once "Model\Conexao.php";
 include_once "Model\Produto.php";
-include_once "Controller\DaoProduto.php";
+include_once "Controller\ProdutoController.php";
 
-if(isset($_POST['btnInserir'])){
+$cn = new Conexao();
+$cp = new Produto();
 
-  $cn = new Conexao();
-  $cp = new Produto();
+if(isset($_POST['btnInserir'])) {
 
-  $cp->inserirProduto(
-    $_POST['txtNomeProduto'],
-    $_POST['ckbPersonalizado'] = ( isset($_POST['ckbPersonalizado']) ) ? 1 : 0,
-    $_POST['cbbCor'],
-    $_POST['txtObs'],
-    $_POST['txtQuantidadeTotal']);
+	$cp->inserirProduto (
+		$_POST['txtNomeProduto'],
+    	$_POST['ckbPersonalizado'] = ( isset($_POST['ckbPersonalizado']) ) ? 1 : 0,
+    	$_POST['cbbCor'],
+    	$_POST['txtObs'],
+    	$_POST['txtQuantidadeTotal']
+    );
 
-  $daoProd = new DaoProduto($cn);
-
-  $daoProd->Inserir($cp);
-  	echo "<script> alert('Produto cadastrado!'); window.location.replace('produtos_lista.php'); </script>";
-
+  $pc = new ProdutoController($cn);
+  $pc->Inserir($cp);
+  	echo "<script> alert('Produto cadastrado!'); window.location.replace('produto_listar.php'); </script>";
 }
-?>
 
-<?php include 'header.php'; ?>
+
+include_once "header.php";
+?>
 
 					<!-- Conteúdo -->
 						<section>
