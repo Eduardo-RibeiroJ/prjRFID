@@ -30,6 +30,7 @@ include_once 'header.php';
 												<td>Situação</td>
 												<td> </td>
 												<td> </td>
+												<td> </td>
 											</tr>
 
 											
@@ -42,6 +43,7 @@ include_once 'header.php';
 												<td> <?=$linha["status"];?> </td> 
 												
 												<center>
+													<td> <a href="movimentacao_produto_lista.php?status=<?=$linha["status"];?>&idContrato=<?=$linha["idContrato"];?>">Ver Produtos</a> </td>
 													<td> <a href="#">Editar</a> </td>
 													<td> <a href="?acao=excluir&idContrato=1">Apagar</a> </td>
 												</center>
