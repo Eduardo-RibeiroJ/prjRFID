@@ -4,7 +4,7 @@ include_once "Model\Conexao.php";
 
 class EtiquetaController { 
 
-	public static function getEtiquetas($rfid = 0){
+	public static function getEtiquetas($rfid = 0, $json = false){
 
 		if(!empty($rfid))
 			$rfidWhere = ' where tbetiqueta.rfid = '.$rfid.' ';
@@ -20,7 +20,14 @@ class EtiquetaController {
 			$db = new Conexao();
 			$dados = mysqli_query($db->getConection(),$sql); 
 	       
-	        return $dados;
+	       
+	       if($json){	       	
+       			$linha = mysqli_fetch_object($dados);
+       			return json_encode($linha, true);
+	       }else{	    
+	       	
+    			return $dados;
+	       }
    }
 
    

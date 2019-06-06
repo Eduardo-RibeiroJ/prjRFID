@@ -24,18 +24,32 @@ class MovimentacaoController {
 					inner join tbcontrato on tbcontrato.idContrato = tbitenscontrato.idContrato
 					where tbcontrato.idContrato = '".$idContrato."' ";
 
+
 			$db = new Conexao();
 			$dados = mysqli_query($db->getConection(),$sql); 
 	       
-	       if($json){
+	       
+	       if($json){	       	
+       			$linha = mysqli_fetch_object($dados);
+       			return json_encode($linha, true);
+	       }else{	    
 
-	       	$linha = mysqli_fetch_array($dados);
-	       	return json_encode($linha,true);
+    			return $dados;
+	       }
+   }
 
+	public static function getTemp($json = false){
+		
+			 $sql = "select  * from tbtemp";
 
-	       }else{	      
-
-	        return $dados;
+			$db = new Conexao();
+			$dados = mysqli_query($db->getConection(),$sql); 
+	       
+	       if($json){	       	
+       			$linha = mysqli_fetch_object($dados);
+       			return json_encode($linha, true);
+	       }else{	    
+    			return $dados;
 	       }
    }
 

@@ -8,14 +8,15 @@
 									<center>
 										<table border=0>
 											<tr>
+												
 												<td>
-													<form method="POST" action="inientrada.php">
+													<form method="POST" action="movimentacao_iniciar_saida.php">
 														<center>
-														<p><b>ENTRADAS</b></p>
+														<p><b>SAÍDAS</b></p>
 														<p>Número do Contrato <br>
-															<input type="text" name="ncontrato" id="ncontrato">
+															<input type="text" name="idContrato" id="idContrato" required="">
 														</p>
-														<input type="submit" name="enviar" value="Iniciar Entradas">
+														<input type="submit" name="enviar" value="Iniciar Saídas">
 														</center>
 													</form>
 												</td>
@@ -23,13 +24,13 @@
 												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 												</td>
 												<td>
-													<form method="POST" action="inisaida.php">
+													<form method="POST" action="movimentacao_iniciar_entrada.php">
 														<center>
-														<p><b>SAÍDAS</b></p>
+														<p><b>ENTRADAS</b></p>
 														<p>Número do Contrato <br>
-															<input type="text" name="ncontrato" id="ncontrato">
+															<input type="text" name="idContrato" id="idContrato" required="">
 														</p>
-														<input type="submit" name="enviar" value="Iniciar Saídas">
+														<input type="submit" name="enviar" value="Iniciar Entradas">
 														</center>
 													</form>
 												</td>
