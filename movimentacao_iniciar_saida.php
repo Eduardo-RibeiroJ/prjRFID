@@ -21,21 +21,17 @@ $idContrato = $_POST['idContrato'];
 										</div>
 									</header>
 									<center>
-										<table border=0>
+										<table border='1'  >
+											<thead>
 											<tr>
-												<td>Rfid</td>
-												<td>Produto</td>
+												<td><strong>Rfid</strong></td>
+												<td><strong>Produto</strong></td>
 												<td> </td>
-											</tr>
-											<tr>
-												<td> ----</td> 
-												<td> ---- </td> 
-												
-												<center>
-													<td> <a href="">Apagar</a> </td>
-												</center>
-
-											</tr>	
+											</tr> 
+											</thead> 
+										<tbody border='1' id="tabela">
+											  
+										</tbody>
 										</table>
 									</center>
 								</section>
@@ -51,6 +47,7 @@ $idContrato = $_POST['idContrato'];
 			</div>
 
 		<?php include 'scripts.php'; ?>
+	     <script src="assets/js/movimentacao.js"></script>
 
 	</body>
 </html>

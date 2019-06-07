@@ -30,8 +30,11 @@ class MovimentacaoController {
 	       
 	       
 	       if($json){	       	
-       			$linha = mysqli_fetch_object($dados);
-       			return json_encode($linha, true);
+
+	        while($row = $dados->fetch_array(MYSQLI_ASSOC)) { $myArray[] = $row; }
+
+ 			return json_encode($myArray);
+ 			
 	       }else{	    
 
     			return $dados;
@@ -40,14 +43,19 @@ class MovimentacaoController {
 
 	public static function getTemp($json = false){
 		
-			 $sql = "select  * from tbtemp";
+			 $sql = "select   tbetiqueta.rfid, tbproduto.nomeProd from tbtemp 
+inner join tbetiqueta on tbetiqueta.rfid = tbtemp.etiqueta
+inner join tbproduto on tbproduto.idProduto = tbetiqueta.idProduto;";
 
 			$db = new Conexao();
 			$dados = mysqli_query($db->getConection(),$sql); 
 	       
-	       if($json){	       	
-       			$linha = mysqli_fetch_object($dados);
-       			return json_encode($linha, true);
+	       if($json){	  
+
+	        while($row = $dados->fetch_array(MYSQLI_ASSOC)) { $myArray[] = $row; }
+
+ 			return json_encode($myArray);
+
 	       }else{	    
     			return $dados;
 	       }
