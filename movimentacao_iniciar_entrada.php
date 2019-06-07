@@ -16,7 +16,7 @@ $idContrato = $_POST['idContrato'];
 												<h3>Iniciar Entrada Contrato <?php echo $idContrato; ?></h3>
 											</div> 
 											<div class="col-4">
-												<a class="button" href="#">FINALIZAR</a>
+												<a class="button" href="movimentacao_finalizar.php?status=E&idContrato=<?php echo $idContrato; ?>">FINALIZAR</a>
 										    </div>
 										</div>
 									</header>
