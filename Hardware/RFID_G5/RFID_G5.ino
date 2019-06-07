@@ -91,6 +91,9 @@ bool Conectar(){
  
 void loop() 
 {
+  if (!conn.connected()) {
+    Conectar();
+  }
   /**
    * Verifica se o leitor está operando normalmente e se tem algum cartão presente
    * Caso não tenha a função é retornada e começa novamente
