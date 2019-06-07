@@ -85,6 +85,7 @@ bool Conectar(){
       else{
         Serial.println("A conexão falhou");
         conn.close();
+        delay(1000);
       }
    }
 }
@@ -92,6 +93,7 @@ bool Conectar(){
 void loop() 
 {
   if (!conn.connected()) {
+    conectado = false;
     Conectar();
   }
   /**
@@ -112,7 +114,7 @@ void loop()
    */
   String conteudo= "";
   for (byte i = 0; i < mfrc522.uid.size; i++) 
-  {=
+  {
      conteudo.concat(String(mfrc522.uid.uidByte[i], HEX));
   }
 
@@ -124,7 +126,7 @@ void loop()
   /**
    * Execução da Query no banco de dados inserindo o UID do cartão
    */
-  Serial.print("Executando Query:");
+  Serial.print("Executando Query: ");
   MySQL_Cursor *cur_mem = new MySQL_Cursor(&conn);
   cur_mem->execute(sentenca);
   Serial.println(sentenca);
