@@ -33,7 +33,7 @@
 /**
  * Configurações do MYSQL e do Shild Ethernet
  */
-byte mac_addr[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED }; //MAC ADDRESS SHILD
+byte mac_addr[] = { 0x00, 0xAA, 0xBB, 0xCC, 0xDE, 0x02 }; //MAC ADDRESS SHILD
 bool conectado = false;                                   // Variavel de controle conexão
 
 IPAddress server_addr(177,55,116,99);    //IP do servidor MYSQL
@@ -59,8 +59,10 @@ void setup()
    Serial.begin(115200);
    SPI.begin();  
    mfrc522.PCD_Init();
-   while (!Serial); 
+   while (!Serial);
+   Serial.println("Serial Iniciado");
    Ethernet.begin(mac_addr);
+   Serial.println("Ethernet Iniciado");
    Conectar();
 }
 
