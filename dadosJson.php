@@ -5,9 +5,9 @@ error_reporting(E_ERROR | E_WARNING | E_PARSE);
 
 /* DADOS JSON DO CONTRATO */
 
-include_once "Controller\MovimentacaoController.php";
+include_once "Controller/MovimentacaoController.php";
 
-include_once "Controller\EtiquetaController.php";
+include_once "Controller/EtiquetaController.php";
 
 
 
