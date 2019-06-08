@@ -63,13 +63,18 @@ class MovimentacaoController {
 
    
 
-	public static function deletarEtiquetas($rfid){
+	public static function deletarMovimentacao($idContrato){
 
-		if(!empty($rfid))
+		if(!empty($idContrato))
 		{
 		   try {
 
-				$sql = "DELETE FROM tbEtiqueta  WHERE rfid = '".$rfid."'";
+				$sql = "DELETE FROM tbContrato  WHERE idContrato = '".$idContrato."'";
+
+				$db = new Conexao();
+				$dados = mysqli_query($db->getConection(),$sql); 
+
+				$sql = "DELETE FROM tbitenscontrato  WHERE idContrato = '".$idContrato."'";
 
 				$db = new Conexao();
 				$dados = mysqli_query($db->getConection(),$sql); 

@@ -3,6 +3,9 @@ include_once "Model/Conexao.php";
 include_once "Controller/MovimentacaoController.php";
 
 if (isset($_GET['idContrato']) && isset($_GET['acao'])) {
+
+	MovimentacaoController::deletarMovimentacao($_GET['idContrato']);
+	
 	echo "<script> alert('Movimentaçães deletada!'); window.location.replace('movimentacao_lista.php'); </script>";
 }
 ?>
@@ -30,8 +33,8 @@ if (isset($_GET['idContrato']) && isset($_GET['acao'])) {
 									<td>Total de Produto</td>
 									<td>Situação</td>
 									<td> </td>
-									<td> </td>
-									<td> </td>
+									<!-- <td> </td> -->
+									<!-- <td> </td> -->
 								</tr>
 
 								<?php $dados = MovimentacaoController::getMovimentacao(); ?>
@@ -43,8 +46,8 @@ if (isset($_GET['idContrato']) && isset($_GET['acao'])) {
 
 									<center>
 										<td> <a href="movimentacao_produto_lista.php?status=<?= $linha["status"]; ?>&idContrato=<?= $linha["idContrato"]; ?>">Ver Produtos</a> </td>
-										<td> <a href="#">Editar</a> </td>
-										<td> <a href="?acao=excluir&idContrato=1">Apagar</a> </td>
+										<!-- <td> <a href="#">Editar</a> </td> -->
+										<!-- <td> <a href="?acao=excluir&idContrato=1">Apagar</a> </td> -->
 									</center>
 
 									</tr>
