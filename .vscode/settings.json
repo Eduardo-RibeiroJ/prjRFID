@@ -1,0 +1,9 @@
+{
+  "files.encoding": "utf8",
+  "editor.tabSize": 3,
+  "files.eol": "\n",
+  "files.insertFinalNewline": true,
+  "editor.wordWrapColumn": 140,
+  "editor.trimAutoWhitespace": true,
+  "editor.formatOnSave": false
+}

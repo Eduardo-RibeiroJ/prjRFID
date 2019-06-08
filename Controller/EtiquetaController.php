@@ -1,25 +1,24 @@
 <?php
 
-include_once "Model\Conexao.php";
+include_once "Model/Conexao.php";
 
 class EtiquetaController { 
 
 	public static function getEtiquetas($rfid = 0, $json = false){
 
 		if(!empty($rfid))
-			$rfidWhere = ' where tbetiqueta.rfid = '.$rfid.' ';
+			$rfidWhere = ' where tbEtiqueta.rfid = '.$rfid.' ';
 		else
 			$rfidWhere = '';
 		
 			 $sql = "select 
-					tbetiqueta.rfid,
-					tbproduto.idProduto,
-					tbproduto.nomeProd
-					from tbetiqueta inner join tbproduto on tbproduto.idProduto = tbetiqueta.idProduto ".$rfidWhere;
+					tbEtiqueta.rfid,
+					tbProduto.idProduto,
+					tbProduto.nomeProd
+					from tbEtiqueta inner join tbProduto on tbProduto.idProduto = tbEtiqueta.idProduto ".$rfidWhere;
 
 			$db = new Conexao();
 			$dados = mysqli_query($db->getConection(),$sql); 
-	       
 	       
 	       if($json){	       	
        			$linha = mysqli_fetch_object($dados);
@@ -38,7 +37,7 @@ class EtiquetaController {
 		{
 		   try {
 
-				$sql = "DELETE FROM tbetiqueta  WHERE rfid = '".$rfid."'";
+				$sql = "DELETE FROM tbEtiqueta  WHERE rfid = '".$rfid."'";
 
 				$db = new Conexao();
 				$dados = mysqli_query($db->getConection(),$sql); 

@@ -1,56 +1,49 @@
-<?php 
-
-include_once "Model\Conexao.php";
-include_once "Controller\MovimentacaoController.php";
-include_once 'header.php';
+<?php
+include_once "Model/Conexao.php";
+include_once "Controller/MovimentacaoController.php";
 
 $idContrato = $_POST['idContrato'];
-
 ?>
 
+<?php include_once 'header.php'; ?>
+<!-- html-->
+	<!-- body -->
+		<!-- wrapper -->
+			<!-- main -->
+				<!-- inner -->
+
 					<!-- Conteúdo -->
-								<section>
-									<header class="main">
-										<div class="row">
-											<div class="col-8">
-												<h3>Iniciar Saída Contrato <?php echo $idContrato; ?></h3>
-											</div> 
-											<div class="col-4">
-												<a class="button" href="#">FINALIZAR</a>
-										    </div>
-										</div>
-									</header>
-									<center>
-										<table border=0>
-											<tr>
-												<td>Rfid</td>
-												<td>Produto</td>
-												<td> </td>
-											</tr>
-											<tr>
-												<td> ----</td> 
-												<td> ---- </td> 
-												
-												<center>
-													<td> <a href="">Apagar</a> </td>
-												</center>
+					<section>
+						<header class="main">
+							<div class="row">
+								<div class="col-8">
+									<h3>Iniciar Saída Contrato <?php echo $idContrato; ?></h3>
+								</div>
+								<div class="col-4">
+									<a class="button" href="movimentacao_finalizar.php?status=S&idContrato=<?php echo $idContrato; ?>">FINALIZAR</a>
+								</div>
+							</div>
+						</header>
+						<center>
+							<table border="1">
+								<thead>
+									<tr>
+										<td><strong>Rfid</strong></td>
+										<td><strong>Produto</strong></td>
+										<td> </td>
+									</tr>
+								</thead>
+								<tbody border="1" id="tabela">
 
-											</tr>	
-										</table>
-									</center>
-								</section>
+								</tbody>
+							</table>
+						</center>
+					</section>
 
-						</div>
-					</div>
-
-					<?php include 'menu.php'; ?>
-
-						</div>
-					</div>
-
-			</div>
-
-		<?php include 'scripts.php'; ?>
-
-	</body>
-</html>
+				<!-- inner -->
+			<!-- main -->
+		<!-- wrapper -->
+	<!-- body -->
+<!-- html-->
+<?php $jsExtra = 'movimentacao'; ?>
+<?php include 'footer.php'; ?>

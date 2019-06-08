@@ -1,6 +1,6 @@
 <?php
 
-include_once "Model\Conexao.php";
+include_once "Model/Conexao.php";
 
 class ProdutoController
 {
@@ -19,7 +19,7 @@ class ProdutoController
         $obs = $produto->getObs();
         $quantTotal = $produto->getQuantTotal();
 
-        $query = "INSERT INTO tbproduto (nomeProd, personalizado, cor, obs, quantTotal, quantDisponivel) VALUES (?,?,?,?,?,?);"; 
+        $query = "INSERT INTO tbProduto (nomeProd, personalizado, cor, obs, quantTotal, quantDisponivel) VALUES (?,?,?,?,?,?);"; 
         $stmt = mysqli_prepare($this->db->getConection(), $query);
 
         if($stmt === FALSE){
@@ -41,7 +41,7 @@ class ProdutoController
         $obs = $produto->getObs();
         $quantTotal = $produto->getQuantTotal();
 
-        $query = "UPDATE tbproduto SET nomeProd=?, personalizado=?, cor=?, obs=?, quantTotal=? , quantDisponivel=?  WHERE idProduto = ?";
+        $query = "UPDATE tbProduto SET nomeProd=?, personalizado=?, cor=?, obs=?, quantTotal=? , quantDisponivel=?  WHERE idProduto = ?";
  
         $stmt = mysqli_prepare($this->db->getConection(), $query);
 
