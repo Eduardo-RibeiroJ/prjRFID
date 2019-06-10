@@ -18,12 +18,12 @@ class MovimentacaoController {
 
 	public static function getProdutosByMovimentacao($idContrato,$json = false){
 		
-			 $sql = "select  * from tbProduto
-					inner join tbEtiqueta on tbEtiqueta.idProduto = tbProduto.idProduto
-					inner join tbItenscontrato on tbItenscontrato.rfidProduto = tbEtiqueta.rfid
-					inner join tbContrato on tbContrato.idContrato = tbItenscontrato.idContrato
-					where tbContrato.idContrato = '".$idContrato."' ";
-
+			 $sql = "select * from tbProduto
+					 inner join tbEtiqueta on tbEtiqueta.idProduto = tbProduto.idProduto 
+					 inner join tbItensContrato on tbItensContrato.rfidProduto = tbEtiqueta.rfid inner
+					  join tbContrato on tbContrato.idContrato = tbItensContrato.idContrato
+					   where tbContrato.idContrato =  '".$idContrato."' ";
+ 
 
 			$db = new Conexao();
 			$dados = mysqli_query($db->getConection(),$sql); 
@@ -43,7 +43,7 @@ class MovimentacaoController {
 
 	public static function getTemp($json = false){
 		
-			 $sql = "select tbEtiqueta.rfid, tbProduto.nomeProd from tbTemp 
+			 $sql = "select distinct tbEtiqueta.rfid, tbProduto.nomeProd from tbTemp 
 						inner join tbEtiqueta on tbEtiqueta.rfid = tbTemp.etiqueta
 						inner join tbProduto on tbProduto.idProduto = tbEtiqueta.idProduto;";
 
@@ -109,7 +109,7 @@ class MovimentacaoController {
 			//CRIA OS ITENS DO CONTRATO
 			while($row = $dados_temp->fetch_array(MYSQLI_ASSOC)) { 
 
-	        	$sql = 'INSERT INTO tbItenscontrato (idContrato, rfidProduto, horaSaida) values ("'.$idContrato.'", "'.$row['etiqueta'].'", "'.date("Y-m-d H:i:s").'")';
+	        	$sql = 'INSERT INTO tbItensContrato (idContrato, rfidProduto, horaSaida) values ("'.$idContrato.'", "'.$row['etiqueta'].'", "'.date("Y-m-d H:i:s").'")';
 			    mysqli_query($db->getConection(),$sql);
 
 	       } 
