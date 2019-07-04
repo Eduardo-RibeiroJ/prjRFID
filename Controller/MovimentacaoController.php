@@ -61,6 +61,22 @@ class MovimentacaoController {
 	       }
    }
 
+   public static function verificaProduto($rfid, $idContrato){
+		
+			$sql = "select rfid from tbContrato where rfid = '".$rfid."' AND idContrato = '".$idContrato."';";
+
+
+			$db = new Conexao();
+			$dados = mysqli_query($db->getConection(),$sql); 
+	       
+	       if($sql == null) {
+	       		return false;
+	       }
+	       else {
+	       		return true;
+	       }
+   }
+
    
 
 	public static function deletarMovimentacao($idContrato){

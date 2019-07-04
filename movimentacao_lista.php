@@ -6,7 +6,7 @@ if (isset($_GET['idContrato']) && isset($_GET['acao'])) {
 
 	MovimentacaoController::deletarMovimentacao($_GET['idContrato']);
 	
-	echo "<script> alert('Movimentaçães deletada!'); window.location.replace('movimentacao_lista.php'); </script>";
+	echo "<script> alert('Movimentação deletada!'); window.location.replace('movimentacao_lista.php'); </script>";
 }
 ?>
 

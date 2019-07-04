@@ -2,10 +2,10 @@
 
 class Conexao
 {
-	private $host = "177.55.116.99:41890";
-	private $username = "rfid_coworking";
-	private $password = "rfid_coworking#";
-	private $database = "rfid";
+	private $host = "localhost";
+	private $username = "root";
+	private $password = "";
+	private $database = "bd_rfid";
 	private $conexao = null;
 
 	public function __construct()

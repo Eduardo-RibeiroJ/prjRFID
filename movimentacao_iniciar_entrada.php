@@ -25,7 +25,7 @@ $idContrato = $_POST['idContrato'];
 							</div>
 						</header>
 						<center>
-							<table border="1">
+							<!--<table border="1">
 								<thead>
 									<tr>
 										<td><strong>Rfid</strong></td>
@@ -36,6 +36,37 @@ $idContrato = $_POST['idContrato'];
 								<tbody border="1" id="tabela">
 
 								</tbody>
+							</table>-->
+
+
+							<table border=0>
+								<tr>
+									<td>ID</td>
+									<td>Produto</td>
+									<td>RFID</td>
+								</tr>
+
+
+								<?php
+								$dados = MovimentacaoController::getProdutosByMovimentacao($idContrato);
+								while ($linha = mysqli_fetch_array($dados)) {
+									?>
+									<td> <?= $linha["idProduto"]; ?> </td>
+									<td> <?= $linha["nomeProd"]; ?> </td>
+									<td> <?= $linha["rfid"]; ?> </td>
+
+									</tr>
+
+								<?php
+
+							}
+
+							?>
+
+								<tr>
+
+
+								</tr>
 							</table>
 						</center>
 					</section>
