@@ -61,20 +61,33 @@ class MovimentacaoController {
 	       }
    }
 
-   public static function verificaProduto($rfid, $idContrato){
-		
-			$sql = "select rfid from tbContrato where rfid = '".$rfid."' AND idContrato = '".$idContrato."';";
+   public static function verificaProdutos($json = false){
+
+			$sql = "select DISTINCT etiqueta from tbTemp;";
 
 
 			$db = new Conexao();
-			$dados = mysqli_query($db->getConection(),$sql); 
-	       
-	       if($sql == null) {
-	       		return false;
-	       }
-	       else {
-	       		return true;
-	       }
+			$dados = mysqli_query($db->getConection(),$sql);
+
+
+	       $quant = mysqli_query($db->getConection(),$sql);
+
+			return mysqli_num_rows($quant);
+
+   }
+
+   public static function verificaQuantidadeProdutos($idContrato){
+
+			$sql = "select * from tbItenscontrato 
+					 where idContrato = '".$idContrato."';";
+
+
+			$db = new Conexao();
+
+			$quant = mysqli_query($db->getConection(),$sql);
+
+			return mysqli_num_rows($quant);
+
    }
 
    

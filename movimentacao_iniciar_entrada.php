@@ -24,49 +24,50 @@ $idContrato = $_POST['idContrato'];
 								</div>
 							</div>
 						</header>
-						<center>
-							<!--<table border="1">
-								<thead>
+							<div>
+								<table border=1>
 									<tr>
-										<td><strong>Rfid</strong></td>
-										<td><strong>Produto</strong></td>
+										<td><strong>Quantidade de Itens a Retornar</strong></td>
+										<td><strong>Quantidade de Itens Retornados</strong></td>
 										<td> </td>
 									</tr>
-								</thead>
-								<tbody border="1" id="tabela">
-
-								</tbody>
-							</table>-->
-
-
-							<table border=0>
-								<tr>
-									<td>ID</td>
-									<td>Produto</td>
-									<td>RFID</td>
-								</tr>
-
-
-								<?php
-								$dados = MovimentacaoController::getProdutosByMovimentacao($idContrato);
-								while ($linha = mysqli_fetch_array($dados)) {
-									?>
-									<td> <?= $linha["idProduto"]; ?> </td>
-									<td> <?= $linha["nomeProd"]; ?> </td>
-									<td> <?= $linha["rfid"]; ?> </td>
-
+									<tr>
+										<?php
+										$quantidade = MovimentacaoController::verificaQuantidadeProdutos($idContrato);
+										?>
+										<td><strong> <?= $quantidade; ?> </strong></td>
+										<td id="itens"> </td>
+										<td> </td>
 									</tr>
 
-								<?php
+								</table>
+							</div>
 
-							}
+							<h3>Itens a Retornar</h3>
+						<center>
+							<table border=1>
+									<tr>
+										<td>ID</td>
+										<td>Produto</td>
+										<td>RFID</td>
+									</tr>
 
-							?>
 
-								<tr>
+									<?php
+									$dados = MovimentacaoController::getProdutosByMovimentacao($idContrato);
+									while ($linha = mysqli_fetch_array($dados)) {
+										?>
+										<td> <?= $linha["idProduto"]; ?> </td>
+										<td> <?= $linha["nomeProd"]; ?> </td>
+										<td> <?= $linha["rfid"]; ?> </td>
 
+										</tr>
 
-								</tr>
+									<?php
+
+								}
+
+								?>
 							</table>
 						</center>
 					</section>

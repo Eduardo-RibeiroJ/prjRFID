@@ -34,3 +34,11 @@ if(isset($_GET['acao']) && ($_GET['acao']=='etiquetas')){
 	echo EtiquetaController::getEtiquetas(0, true);
 
 }
+
+
+//VERIFICAR ENTRADA
+if(isset($_GET['acao']) && ($_GET['acao']=='verificar')){
+	
+	echo MovimentacaoController::verificaProdutos(true);
+
+}

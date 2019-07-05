@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	
+
 	function atualiza_movimentacao() { 
 		
 		$('#tabela').empty();  
@@ -21,5 +21,24 @@ $(document).ready(function(){
 		});
 	}
 
+	
+	function verificarItens() { 
+		
+		$('#itens').empty();  
+		
+		$.ajax({
+			type:'get',	 
+			dataType: 'json', 
+			url: 'dadosJson.php?acao=verificar', 
+			success: function(dados){
+
+				$('#itens').append('<strong>'+dados+'</strong>');
+				
+			}
+		});
+	}
+
 	var tid = setInterval(atualiza_movimentacao, 2000);
+	var tvi = setInterval(verificarItens, 2000);
+
 });
