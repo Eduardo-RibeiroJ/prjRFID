@@ -38,21 +38,23 @@ if (isset($_GET['idContrato']) && isset($_GET['acao'])) {
 								</tr>
 
 								<?php $dados = MovimentacaoController::getMovimentacao(); ?>
-								<?php while ($linha = mysqli_fetch_array($dados)): ?>
+								<?php if($dados): ?>
+									<?php while ($linha = mysqli_fetch_array($dados)): ?>
 
-									<td> <?= $linha["idContrato"]; ?> </td>
-									<td> <?= $linha["total"]; ?> </td>
-									<td> <?= $linha["status"]; ?> </td>
+										<td> <?= $linha["idContrato"]; ?> </td>
+										<td> <?= $linha["total"]; ?> </td>
+										<td> <?= $linha["status"]; ?> </td>
 
-									<center>
-										<td> <a href="movimentacao_produto_lista.php?status=<?= $linha["status"]; ?>&idContrato=<?= $linha["idContrato"]; ?>">Ver Produtos</a> </td>
-										<!-- <td> <a href="#">Editar</a> </td> -->
-										<!-- <td> <a href="?acao=excluir&idContrato=1">Apagar</a> </td> -->
-									</center>
+										<center>
+											<td> <a href="movimentacao_produto_lista.php?status=<?= $linha["status"]; ?>&idContrato=<?= $linha["idContrato"]; ?>">Ver Produtos</a> </td>
+											<!-- <td> <a href="#">Editar</a> </td> -->
+											<!-- <td> <a href="?acao=excluir&idContrato=1">Apagar</a> </td> -->
+										</center>
 
-									</tr>
+										</tr>
 
-								<?php endwhile; ?>
+									<?php endwhile; ?>
+								<?php endif; ?>
 								<tr>
 
 								</tr>
