@@ -50,4 +50,28 @@ class EtiquetaController {
 		return false;
    }
 
+   public static function etiquetar($idProduto) {
+
+		if(!empty($idProduto) )
+		{
+
+			$db = new Conexao();
+
+ 			$sql_temp = "select distinct etiqueta from tbTemp";
+			$dados_temp = mysqli_query($db->getConection(),$sql_temp);
+
+			while($row = $dados_temp->fetch_array(MYSQLI_ASSOC)) { 
+
+	        	$sql = 'INSERT INTO tbEtiqueta (rfid, idProduto) values ("'.$row['etiqueta'].'", "'.$idProduto.'");';
+			    mysqli_query($db->getConection(),$sql);
+			}
+ 
+				$sql_temp = "TRUNCATE TABLE tbTemp";
+
+				$db = new Conexao();
+				$dados = mysqli_query($db->getConection(),$sql_temp);
+   		}
+
+	}
+
 }

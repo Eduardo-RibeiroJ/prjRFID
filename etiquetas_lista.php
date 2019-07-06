@@ -24,7 +24,6 @@ if(isset($_GET['rfid']) && isset($_GET['acao'])) {
 									<h1>Listar Etiquetas</h1>
 								</div>
 								<div class="col-4">
-									<a class="button" href="etiqueta_vincular.php">Vincular Produto</a>
 								</div>
 							</div>
 						</header>
@@ -45,7 +44,7 @@ if(isset($_GET['rfid']) && isset($_GET['acao'])) {
 										<td> <?= $linha["nomeProd"]; ?> </td>
 
 										<center>
-											<td> <a href="etiqueta_editar.php?rfid=<?= $linha["rfid"]; ?>">Editar</a> </td>
+											<td></td>
 											<td> <a href="?acao=1&rfid=<?= $linha["rfid"]; ?>">Apagar</a> </td>
 										</center>
 

@@ -48,6 +48,7 @@ if(isset($_GET['apagar']) && isset($_GET['idProduto'])) {
 									<td>Quantidade Disponível</td>
 									<td> </td>
 									<td> </td>
+									<td> </td>
 								</tr>
 
 								<?php
@@ -70,6 +71,7 @@ if(isset($_GET['apagar']) && isset($_GET['idProduto'])) {
 									<center>
 										<td> <a href="produto_alterar.php?idProduto=<?=$reg["idProduto"];?>">Alterar</a> </td>
 										<td> <a href="?idProduto=<?=$reg["idProduto"];?>&apagar=1">Apagar</a> </td>
+										<td> <a href="produto_etiquetar.php?idProduto=<?=$reg["idProduto"];?>">Etiquetar</a> </td>
 									</center>
 								</tr>
 									

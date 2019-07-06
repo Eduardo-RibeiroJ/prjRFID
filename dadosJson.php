@@ -26,6 +26,14 @@ if(isset($_GET['acao']) && ($_GET['acao']=='temp')){
 
 }
 
+//TEMPORARIAS
+//exemplo de url http://127.0.0.1/prjRFID/dadosProdutos.php?acao=temp
+if(isset($_GET['acao']) && ($_GET['acao']=='tempetiquetas')){
+	
+	echo MovimentacaoController::getTempEtiquetas(true);
+
+}
+
 
 //JA VINCULADAS A PRODUTOS
 //exemplo de url http://127.0.0.1/prjRFID/dadosProdutos.php?acao=etiquetas

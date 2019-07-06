@@ -61,6 +61,24 @@ class MovimentacaoController {
 	       }
    }
 
+   public static function getTempEtiquetas($json = false){
+		
+			 $sql = "select DISTINCT etiqueta from tbTemp;";
+
+			$db = new Conexao();
+			$dados = mysqli_query($db->getConection(),$sql); 
+	       
+	       if($json){	  
+
+	        while($row = $dados->fetch_array(MYSQLI_ASSOC)) { $myArray[] = $row; }
+
+ 			return json_encode($myArray);
+
+	       }else{	    
+    			return $dados;
+	       }
+   }
+
    public static function verificaProdutos($json = false){
 
 			$sql = "select DISTINCT etiqueta from tbTemp;";
