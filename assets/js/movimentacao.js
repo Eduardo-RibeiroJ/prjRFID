@@ -36,7 +36,8 @@ $(document).ready(function(){
 				console.log('atualiza_etiquetagem > dados', dados);
 				
 				for(var i in dados){
-					$('#tabetiquetas').append('<tr><td>'+dados[i].etiqueta+'</td><td><a href="?excluir='+dados[i].etiqueta+'">Remover</a> </td></tr>');
+					$('#tabetiquetas').append('<tr><td>'+dados[i].etiqueta+'</td></tr>');
+					// $('#tabetiquetas').append('<tr><td>'+dados[i].etiqueta+'</td><td><a href="?excluir='+dados[i].etiqueta+'">Remover</a> </td></tr>');
 				}
 			}
 		});

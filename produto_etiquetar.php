@@ -50,9 +50,8 @@ $cp = new Produto();
 							<table border="1">
 								<thead>
 									<tr>
-										<td><strong>Rfid</strong></td>
-										<td><strong>Produto</strong></td>
-										<td> </td>
+										<td><strong>RFID</strong></td>
+										<!-- <td><strong>Remover</strong></td> -->
 									</tr>
 								</thead>
 								<tbody border="1" id="tabetiquetas">
