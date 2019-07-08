@@ -15,7 +15,7 @@ $(document).ready(function(){
 				console.log('atualiza_movimentacao > dados', dados);
 				
 				for(var i in dados){
-					$('#tabela').append('<tr><td>'+dados[i].rfid+'</td><td>'+dados[i].nomeProd+'</td><td><a href="?excluir='+dados[i].rfid+'">REMOVER</a> </td></tr>');
+					$('#tabela').append('<tr><td>'+dados[i].rfid+'</td><td>'+dados[i].nomeProd+'</td><td><a href="?apagar='+dados[i].rfid+'">REMOVER</a> </td></tr>');
 				}
 			}
 		});

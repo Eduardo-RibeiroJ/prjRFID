@@ -16,7 +16,7 @@ class MovimentacaoController {
 	        return $dados;
    }
 
-	public static function getProdutosByMovimentacao($idContrato,$json = false){
+	public static function getProdutosByMovimentacao($idContrato, $json = false){
 		
 			 $sql = "select * from tbProduto
 					 inner join tbEtiqueta on tbEtiqueta.idProduto = tbProduto.idProduto 
@@ -87,28 +87,90 @@ class MovimentacaoController {
 			$db = new Conexao();
 			$dados = mysqli_query($db->getConection(),$sql);
 
-
-	       $quant = mysqli_query($db->getConection(),$sql);
-
-			return mysqli_num_rows($quant);
+			return mysqli_num_rows($dados);
 
    }
 
-   public static function verificaQuantidadeProdutos($idContrato){
+   	public static function getProdutosRetorno($idContrato, $json) {
 
-			$sql = "select * from tbItenscontrato 
-					 where idContrato = '".$idContrato."';";
+			$sql = "select DISTINCT tbproduto.idProduto, tbproduto.nomeProd from tbProduto
+					inner join tbEtiqueta on tbEtiqueta.idProduto = tbProduto.idProduto 
+					inner join tbItensContrato on tbItensContrato.rfidProduto = tbEtiqueta.rfid
+					inner join tbContrato on tbContrato.idContrato = tbItensContrato.idContrato
+					where tbContrato.idContrato = '".$idContrato."';";
 
 
 			$db = new Conexao();
+			$dados = mysqli_query($db->getConection(),$sql);
 
-			$quant = mysqli_query($db->getConection(),$sql);
 
-			return mysqli_num_rows($quant);
+			if($json) {	  
+
+	        	while($row = $dados->fetch_array(MYSQLI_ASSOC)) {
+	        		$myArray[] = $row;
+	        	}
+ 				return json_encode($myArray);
+
+	       	} else {	    
+    			return $dados;
+	    	}
+
+   	}
+
+   	public static function getQuantProdutosRetorno($idContrato, $idProduto, $json){
+
+			if($idProduto === false) {
+
+				$sql = "select * from tbProduto
+          			inner join tbEtiqueta on tbEtiqueta.idProduto = tbProduto.idProduto 
+          			inner join tbItensContrato on tbItensContrato.rfidProduto = tbEtiqueta.rfid
+          			inner join tbContrato on tbContrato.idContrato = tbItensContrato.idContrato
+          			where tbContrato.idContrato = '".$idContrato."';";
+
+          			$db = new Conexao();
+					$dados = mysqli_query($db->getConection(),$sql);
+
+					return mysqli_num_rows($dados);
+			}
+
+			else {
+
+				$sql = "select tbproduto.idProduto from tbProduto
+	          			inner join tbEtiqueta on tbEtiqueta.idProduto = tbProduto.idProduto 
+	          			inner join tbItensContrato on tbItensContrato.rfidProduto = tbEtiqueta.rfid
+	          			inner join tbContrato on tbContrato.idContrato = tbItensContrato.idContrato
+	          			where tbContrato.idContrato = '".$idContrato."' AND tbProduto.idProduto = '".$idProduto."'";
+
+
+				$db = new Conexao();
+				$dados = mysqli_query($db->getConection(),$sql);
+
+
+				if($json) {	  
+
+		        	while($row = $dados->fetch_array(MYSQLI_ASSOC)) {
+		        		$myArray[] = $row;
+		        	}
+	 				return json_encode($myArray);
+
+		       	} else {
+
+	    			return mysqli_num_rows($dados);
+		    	}
+		    }
+
+   	}
+
+   public static function deletarProdTemp($rfid) {
+
+ 
+
+		$sql = "DELETE FROM tbTemp  WHERE etiqueta = '".$rfid."'";
+
+		$db = new Conexao();
+		mysqli_query($db->getConection(),$sql); 
 
    }
-
-   
 
 	public static function deletarMovimentacao($idContrato){
 

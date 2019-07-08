@@ -27,15 +27,12 @@ $idContrato = $_POST['idContrato'];
 							<div>
 								<table border=1>
 									<tr>
-										<td><strong>Quantidade de Itens a Retornar</strong></td>
-										<td><strong>Quantidade de Itens Retornados</strong></td>
+										<td><strong>Quantidade Total de Itens a Retornar</strong></td>
+										<td><strong>Quantidade Total de Itens Retornados</strong></td>
 										<td> </td>
 									</tr>
 									<tr>
-										<?php
-										$quantidade = MovimentacaoController::verificaQuantidadeProdutos($idContrato);
-										?>
-										<td><strong> <?= $quantidade; ?> </strong></td>
+										<td><strong> <?= MovimentacaoController::getQuantProdutosRetorno($idContrato, false, false); ?> </strong></td>
 										<td id="itens"> </td>
 										<td> </td>
 									</tr>
@@ -49,18 +46,19 @@ $idContrato = $_POST['idContrato'];
 									<tr>
 										<td>ID</td>
 										<td>Produto</td>
-										<td>RFID</td>
+										<td>Quantidade</td>
+										<td>Retornado</td>
 									</tr>
 
 
 									<?php
-									$dados = MovimentacaoController::getProdutosByMovimentacao($idContrato);
+									$dados = MovimentacaoController::getProdutosRetorno($idContrato, false);
 									while ($linha = mysqli_fetch_array($dados)) {
 										?>
 										<td> <?= $linha["idProduto"]; ?> </td>
 										<td> <?= $linha["nomeProd"]; ?> </td>
-										<td> <?= $linha["rfid"]; ?> </td>
-
+										<td> <?= MovimentacaoController::getQuantProdutosRetorno($idContrato, $linha["idProduto"], false); ?> </td>
+										<td> </td>
 										</tr>
 
 									<?php

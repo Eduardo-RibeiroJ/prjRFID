@@ -2,7 +2,18 @@
 include_once "Model/Conexao.php";
 include_once "Controller/MovimentacaoController.php";
 
+if(isset($_GET['apagar']) && isset($_GET['rfid'])) {
+
+	echo "<script> alert('Produto removido!'); </script>";
+	deletarProdTemp($rfid);
+
+	echo "<script> alert('Produto removido!'); </script>";
+	return;
+}
+
 $idContrato = $_POST['idContrato'];
+
+
 ?>
 
 <?php include_once 'header.php'; ?>

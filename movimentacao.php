@@ -1,3 +1,8 @@
+<?php
+include_once "Model/Conexao.php";
+include_once "Controller/MovimentacaoController.php";
+?>
+
 <?php include_once 'header.php'; ?>
 <!-- html-->
 	<!-- body -->
@@ -21,7 +26,7 @@
 											<p>Número do Contrato <br>
 												<input type="text" name="idContrato" id="idContrato" required="">
 											</p>
-											<input type="submit" name="enviar" value="Iniciar Saídas">
+											<input type="submit" name="btnIniciarSaida" id="btnIniciarSaida" value="Iniciar Saídas">
 											</center>
 										</form>
 									</td>
@@ -35,7 +40,7 @@
 											<p>Número do Contrato <br>
 												<input type="text" name="idContrato" id="idContrato" required="">
 											</p>
-											<input type="submit" name="enviar" value="Iniciar Entradas">
+											<input type="submit" name="btnIniciarEntrada" id="btnIniciarEntrada" value="Iniciar Entradas">
 											</center>
 										</form>
 									</td>
