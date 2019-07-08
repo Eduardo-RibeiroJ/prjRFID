@@ -3566,3 +3566,12 @@ input, select, textarea {
 			margin-top: 0;
 			padding-top: 0;
 		}
+
+		.bola {
+			margin-bottom: -15px;
+		}
+
+		.quantItens {
+			font-size: 30px;
+			line-height: 50px;
+		}

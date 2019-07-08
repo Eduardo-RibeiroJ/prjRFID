@@ -60,6 +60,27 @@ $(document).ready(function(){
 		});
 	}
 
+	function atualizarStatus() { 
+		
+		$('#status').empty();
+		var elemento = document.getElementById("quant").innerText;
+		$.ajax({
+			type:'get',	 
+			dataType: 'json', 
+			url: 'dadosJson.php?acao=atualizarStatus', 
+			success: function(dados) {
+				if(dados >= parseInt(elemento)) {
+					$('#status').append('<img class="bola" id="imagem" src="images/BolaVerde.png">');
+				}
+				else {
+					$('#status').append('<img class="bola" id="imagem" src="images/BolaVermelha.png">');
+				}
+			}
+		});
+	}
+
+
+	var tas = setInterval(atualizarStatus, 2000);
 	var tet = setInterval(atualiza_etiquetagem, 2000);
 	var tid = setInterval(atualiza_movimentacao, 2000);
 	var tvi = setInterval(verificarItens, 2000);

@@ -23,18 +23,21 @@ $idContrato = $_POST['idContrato'];
 									<a class="button" href="movimentacao_finalizar.php?status=E&idContrato=<?php echo $idContrato; ?>">FINALIZAR</a>
 								</div>
 							</div>
+
+						<script type="text/javascript" src=assets/js/movimentacao.js></script>
+
 						</header>
 							<div>
 								<table border=1>
 									<tr>
 										<td><strong>Quantidade Total de Itens a Retornar</strong></td>
 										<td><strong>Quantidade Total de Itens Retornados</strong></td>
-										<td> </td>
+										<td><strong>Status</strong></td>
 									</tr>
 									<tr>
-										<td><strong> <?= MovimentacaoController::getQuantProdutosRetorno($idContrato, false, false); ?> </strong></td>
-										<td id="itens"> </td>
-										<td> </td>
+										<td class="quantItens" id="quant" height="50px"><strong> <?= MovimentacaoController::getQuantProdutosRetorno($idContrato, false, false); ?> </strong></td>
+										<td class="quantItens" id="itens"> </td>
+										<td id="status"><img id="imagem" class="bola" src="images/BolaVermelha.png"></td>
 									</tr>
 
 								</table>

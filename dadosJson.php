@@ -50,3 +50,10 @@ if(isset($_GET['acao']) && ($_GET['acao']=='verificar')){
 	echo MovimentacaoController::verificaProdutos(true);
 
 }
+
+//Atualizar Status
+if(isset($_GET['acao']) && ($_GET['acao']=='atualizarStatus')){
+	
+	echo MovimentacaoController::verificaProdutos(true);
+
+}
