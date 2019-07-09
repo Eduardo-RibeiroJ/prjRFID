@@ -5,6 +5,24 @@ include_once "Controller/MovimentacaoController.php";
 $idContrato = $_POST['idContrato'];
 ?>
 
+<script type="text/javascript">
+	
+function confirmar() {
+	var val1 = document.getElementById("quant").innerText;
+	var val2 = document.getElementById("itens").innerText;
+	if(parseInt(val1) == parseInt(val2)) {
+		window.location.replace("movimentacao_finalizar.php?status=E&idContrato=<?php echo $idContrato; ?>");
+	}
+	else {
+		var confirmando = confirm("Deseja finalizar a entrada mesmo com a diferença de itens?");
+		if(confirmando){
+			window.location.replace("movimentacao_finalizar_obs.php?status=E&idContrato=<?php echo $idContrato; ?>");
+		}
+	}
+}
+
+</script>
+
 <?php include_once 'header.php'; ?>
 <!-- html-->
 	<!-- body -->
@@ -20,11 +38,12 @@ $idContrato = $_POST['idContrato'];
 									<h3>Iniciar Entrada Contrato <?php echo $idContrato; ?></h3>
 								</div>
 								<div class="col-4">
-									<a class="button" href="movimentacao_finalizar.php?status=E&idContrato=<?php echo $idContrato; ?>">FINALIZAR</a>
+									<a class="button" onclick="confirmar()">FINALIZAR</a>
+									
 								</div>
 							</div>
 
-						<script type="text/javascript" src=assets/js/movimentacao.js></script>
+						
 
 						</header>
 							<div>

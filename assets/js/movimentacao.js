@@ -79,7 +79,6 @@ $(document).ready(function(){
 		});
 	}
 
-
 	var tas = setInterval(atualizarStatus, 2000);
 	var tet = setInterval(atualiza_etiquetagem, 2000);
 	var tid = setInterval(atualiza_movimentacao, 2000);
