@@ -25,7 +25,7 @@
 								</div>
 								<div class="col-6">
 									<h4>Informe o motivo pela diferença de itens do contrato</h4>
-									<input type="text">
+									<textarea type="text">
 								</div>
 								
 							</div>
