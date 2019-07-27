@@ -79,9 +79,11 @@ class MovimentacaoController {
 	       }
    }
 
-   public static function verificaProdutos($json = false){
+   public static function verificaProdutos($json = false, $id_contrato = 0){
 
-			$sql = "select DISTINCT etiqueta from tbTemp;";
+			$sql = "select DISTINCT etiqueta from tbTemp
+					inner join tbitenscontrato on tbitenscontrato.rfidProduto = tbTemp.etiqueta
+					where  idContrato = ".$id_contrato.";";
 
 
 			$db = new Conexao();
@@ -91,7 +93,7 @@ class MovimentacaoController {
 
    }
 
-   	public static function getProdutosRetorno($idContrato, $json) {
+   	public static function getProdutosRetorno($idContrato, $json, $retorno) {
 
 			$sql = "select DISTINCT tbproduto.idProduto, tbproduto.nomeProd from tbProduto
 					inner join tbEtiqueta on tbEtiqueta.idProduto = tbProduto.idProduto 

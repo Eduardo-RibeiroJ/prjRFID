@@ -5,23 +5,6 @@ include_once "Controller/MovimentacaoController.php";
 $idContrato = $_POST['idContrato'];
 ?>
 
-<script type="text/javascript">
-	
-function confirmar() {
-	var val1 = document.getElementById("quant").innerText;
-	var val2 = document.getElementById("itens").innerText;
-	if(parseInt(val1) == parseInt(val2)) {
-		window.location.replace("movimentacao_finalizar.php?status=E&idContrato=<?php echo $idContrato; ?>");
-	}
-	else {
-		var confirmando = confirm("Deseja finalizar a entrada mesmo com a diferença de itens?");
-		if(confirmando){
-			window.location.replace("movimentacao_finalizar_obs.php?status=E&idContrato=<?php echo $idContrato; ?>");
-		}
-	}
-}
-
-</script>
 
 <?php include_once 'header.php'; ?>
 <!-- html-->
@@ -64,7 +47,7 @@ function confirmar() {
 
 							<h3>Itens a Retornar</h3>
 						<center>
-							<table border=1>
+							<table border=1 id="tbContrato" data-idContrato="<?php echo $idContrato; ?>">
 									<tr>
 										<td>ID</td>
 										<td>Produto</td>
@@ -74,7 +57,7 @@ function confirmar() {
 
 
 									<?php
-									$dados = MovimentacaoController::getProdutosRetorno($idContrato, false);
+									$dados = MovimentacaoController::getProdutosRetorno($idContrato, false, false);
 									while ($linha = mysqli_fetch_array($dados)) {
 										?>
 										<td> <?= $linha["idProduto"]; ?> </td>
@@ -99,3 +82,22 @@ function confirmar() {
 <!-- html-->
 <?php $jsExtra = 'movimentacao'; ?>
 <?php include 'footer.php'; ?>
+
+
+<script type="text/javascript">
+	
+function confirmar() {
+	var val1 = document.getElementById("quant").innerText;
+	var val2 = document.getElementById("itens").innerText;
+	if(parseInt(val1) == parseInt(val2)) {
+		window.location.replace("movimentacao_finalizar.php?status=E&idContrato=<?php echo $idContrato; ?>");
+	}
+	else {
+		var confirmando = confirm("Deseja finalizar a entrada mesmo com a diferença de itens?");
+		if(confirmando){
+			window.location.replace("movimentacao_finalizar_obs.php?status=E&idContrato=<?php echo $idContrato; ?>");
+		}
+	}
+}
+
+</script>

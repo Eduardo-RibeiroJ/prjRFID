@@ -47,13 +47,13 @@ if(isset($_GET['acao']) && ($_GET['acao']=='etiquetas')){
 //VERIFICAR ENTRADA
 if(isset($_GET['acao']) && ($_GET['acao']=='verificar')){
 	
-	echo MovimentacaoController::verificaProdutos(true);
+	echo MovimentacaoController::verificaProdutos(true, $_GET['id_contrato']);
 
 }
 
 //Atualizar Status
 if(isset($_GET['acao']) && ($_GET['acao']=='atualizarStatus')){
 	
-	echo MovimentacaoController::verificaProdutos(true);
+	echo MovimentacaoController::verificaProdutos(true, 0);
 
 }

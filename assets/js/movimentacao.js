@@ -46,12 +46,14 @@ $(document).ready(function(){
 	
 	function verificarItens() { 
 		
-		$('#itens').empty();  
+		$('#itens').empty(); 
+
+		var id_contrato = $('#tbContrato').attr("data-idContrato");
 		
 		$.ajax({
 			type:'get',	 
 			dataType: 'json', 
-			url: 'dadosJson.php?acao=verificar', 
+			url: 'dadosJson.php?acao=verificar&id_contrato='+id_contrato, 
 			success: function(dados){
 
 				$('#itens').append('<strong>'+dados+'</strong>');
