@@ -12,12 +12,12 @@ $(document).ready(function(){
 				
 				data = JSON.parse(JSON.stringify(dados));
 				
-				$(data).each(function() {
-					var td = $('.item-' + this.idProduto ).find('.retornados');
-					$(td).text(this.retornados);
+				$(data).each(function(dadosProduto) {
+					var td = $('.item-' + dadosProduto.idProduto ).find('.retornados');
+					$(td).text(dadosProduto.retornados);
 
-					var status = $('.item-' + this.idProduto ).find('.status img');
-					if( this.enviados == this.retornados ){
+					var status = $('.item-' + dadosProduto.idProduto ).find('.status img');
+					if( dadosProduto.enviados == dadosProduto.retornados ){
 						$(status).attr('src', 'images/BolaVerde.png')
 					}else{
 						$(status).attr('src', 'images/BolaVermelha.png')
