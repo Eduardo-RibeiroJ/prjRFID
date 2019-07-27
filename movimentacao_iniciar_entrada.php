@@ -38,7 +38,7 @@ $idContrato = $_POST['idContrato'];
 									</tr>
 									<tr>
 										<td class="quantItens" id="quant" height="50px"><strong> <?= MovimentacaoController::getQuantProdutosRetorno($idContrato, false, false); ?> </strong></td>
-										<td class="quantItens" id="itens"> </td>
+										<td class="quantItens" id="itens"><strong></strong></td>
 										<td id="status"><img id="imagem" class="bola" src="images/BolaVermelha.png"></td>
 									</tr>
 
@@ -53,6 +53,7 @@ $idContrato = $_POST['idContrato'];
 										<td>Produto</td>
 										<td>Quantidade</td>
 										<td>Retornado</td>
+										<td>Status</td>
 									</tr>
 
 
@@ -60,11 +61,13 @@ $idContrato = $_POST['idContrato'];
 									$dados = MovimentacaoController::getProdutosRetorno($idContrato, false);
 									while ($linha = mysqli_fetch_array($dados)) {
 										?>
+										<tr class="item-<?= $linha["idProduto"]; ?>">
 										<td> <?= $linha["idProduto"]; ?> </td>
 										<td> <?= $linha["nomeProd"]; ?> </td>
 										<!-- <td> <?= MovimentacaoController::getQuantProdutosRetorno($idContrato, $linha["idProduto"], false); ?> </td> -->
 										<td><?= $linha["enviados"]; ?> </td>
-										<td><?= $linha["retornados"]; ?> </td>
+										<td class="retornados"><?= $linha["retornados"]; ?> </td>
+										<td class="status"><img style="width: 20px" src="images/BolaVermelha.png"></td>
 										</tr>
 
 									<?php

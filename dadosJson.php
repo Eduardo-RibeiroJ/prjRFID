@@ -57,3 +57,9 @@ if(isset($_GET['acao']) && ($_GET['acao']=='atualizarStatus')){
 	echo MovimentacaoController::verificaProdutos(true, 0);
 
 }
+
+//Atualizar Retornados
+if(isset($_GET['acao']) && ($_GET['acao']=='retornados')){
+	
+	echo MovimentacaoController::getProdutosRetorno( $_GET['id_contrato'], true);
+}
