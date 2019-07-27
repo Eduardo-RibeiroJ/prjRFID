@@ -57,13 +57,14 @@ $idContrato = $_POST['idContrato'];
 
 
 									<?php
-									$dados = MovimentacaoController::getProdutosRetorno($idContrato, false, false);
+									$dados = MovimentacaoController::getProdutosRetorno($idContrato, false);
 									while ($linha = mysqli_fetch_array($dados)) {
 										?>
 										<td> <?= $linha["idProduto"]; ?> </td>
 										<td> <?= $linha["nomeProd"]; ?> </td>
-										<td> <?= MovimentacaoController::getQuantProdutosRetorno($idContrato, $linha["idProduto"], false); ?> </td>
-										<td> </td>
+										<!-- <td> <?= MovimentacaoController::getQuantProdutosRetorno($idContrato, $linha["idProduto"], false); ?> </td> -->
+										<td><?= $linha["enviados"]; ?> </td>
+										<td><?= $linha["retornados"]; ?> </td>
 										</tr>
 
 									<?php

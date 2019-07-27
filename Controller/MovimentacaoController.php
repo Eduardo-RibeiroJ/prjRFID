@@ -93,13 +93,17 @@ class MovimentacaoController {
 
    }
 
-   	public static function getProdutosRetorno($idContrato, $json, $retorno) {
+   	public static function getProdutosRetorno($idContrato, $json) {
 
-			$sql = "select DISTINCT tbproduto.idProduto, tbproduto.nomeProd from tbProduto
-					inner join tbEtiqueta on tbEtiqueta.idProduto = tbProduto.idProduto 
-					inner join tbItensContrato on tbItensContrato.rfidProduto = tbEtiqueta.rfid
-					inner join tbContrato on tbContrato.idContrato = tbItensContrato.idContrato
-					where tbContrato.idContrato = '".$idContrato."';";
+	$sql = "select DISTINCT tbproduto.idProduto, tbproduto.nomeProd,
+			count(tbEtiqueta.rfid) as enviados, count(tbTemp.etiqueta) as retornados
+			from tbProduto
+			inner join tbEtiqueta on tbEtiqueta.idProduto = tbProduto.idProduto 
+			inner join tbItensContrato on tbItensContrato.rfidProduto = tbEtiqueta.rfid
+			inner join tbContrato on tbContrato.idContrato = tbItensContrato.idContrato
+			left join tbTemp on tbTemp.etiqueta = tbItensContrato.rfidProduto
+			where tbContrato.idContrato = '".$idContrato."'
+			group by tbproduto.idProduto";
 
 
 			$db = new Conexao();
