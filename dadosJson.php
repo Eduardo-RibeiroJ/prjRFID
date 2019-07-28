@@ -62,4 +62,12 @@ if(isset($_GET['acao']) && ($_GET['acao']=='atualizarStatus')){
 if(isset($_GET['acao']) && ($_GET['acao']=='retornados')){
 	
 	echo MovimentacaoController::getProdutosRetorno( $_GET['id_contrato'], true);
+	
+}
+
+//Apagar
+if(isset($_GET['acao']) && ($_GET['acao']=='apagar')){
+	
+	echo MovimentacaoController::deletarProdTemp( $_GET['rfid']);
+	
 }

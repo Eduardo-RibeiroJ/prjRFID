@@ -31,7 +31,7 @@ $(document).ready(function(){
 
 	function atualiza_movimentacao() { 
 		
-		$('#tabela').empty();  
+		//$('#tabela').empty();  
 		
 		$.ajax({
 			type:'get',	 
@@ -40,10 +40,29 @@ $(document).ready(function(){
 			success: function(dados){
 				
 				dados = JSON.parse(JSON.stringify(dados));
-				
-				for(var i in dados){
-					$('#tabela').append('<tr><td>'+dados[i].rfid+'</td><td>'+dados[i].nomeProd+'</td><td><a href="?apagar='+dados[i].rfid+'">REMOVER</a> </td></tr>');
+
+				var Produtos = {};
+				$(dados).each(function(key, dadosProd) {
+					if( Produtos[dadosProd.idProduto] === undefined ){
+						Produtos[dadosProd.idProduto] = {'idProduto': dadosProd.idProduto, 'nomeProd': dadosProd.nomeProd, 'count': 1 }
+					}else{
+						Produtos[dadosProd.idProduto].count += 1; 
+					}
+				});
+
+				for(var i in Produtos){
+					if( $('.rowProd-' + Produtos[i].idProduto).length > 0 ){
+						$('.rowProd-' + Produtos[i].idProduto).find("count").text(Produtos[i].count);
+						console.log( $('.rowProd-' + Produtos[i].idProduto).find(".count") );
+					}else{
+						var html = '<tr class="rowProd-' + Produtos[i].idProduto +'"><td>' + Produtos[i].idProduto +'</td>'+
+						'<td>' + Produtos[i].nomeProd +'</td>'+
+						'<td class="count">' + Produtos[i].count +'</td>'+
+						'<td>REMOVER</td></tr>';
+						$('#tabela').append(html);
+					}
 				}
+				
 			}
 		});
 	}
@@ -91,7 +110,8 @@ $(document).ready(function(){
 	}
 
 	var tet = setInterval(atualiza_etiquetagem, 2000);
-	var tid = setInterval(atualiza_movimentacao, 2000);
+	atualiza_movimentacao();
+	var tid = setInterval(atualiza_movimentacao, 1000);
 	var tvi = setInterval(verificarItens, 2000);
 	var tre = setInterval(atualiza_retornados, 2000);
 

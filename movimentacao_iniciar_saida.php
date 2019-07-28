@@ -39,13 +39,13 @@ $idContrato = $_POST['idContrato'];
 							<table border="1">
 								<thead>
 									<tr>
-										<td><strong>Rfid</strong></td>
+										<td><strong>ID</strong></td>
 										<td><strong>Produto</strong></td>
-										<td> </td>
+										<td>Quantidade</td>
+										<td>Ações</td>
 									</tr>
 								</thead>
 								<tbody border="1" id="tabela">
-
 								</tbody>
 							</table>
 						</center>

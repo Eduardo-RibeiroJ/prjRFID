@@ -43,7 +43,7 @@ class MovimentacaoController {
 
 	public static function getTemp($json = false){
 		
-			 $sql = "select distinct tbEtiqueta.rfid, tbProduto.nomeProd from tbTemp 
+			 $sql = "select distinct tbEtiqueta.rfid, tbProduto.nomeProd, tbProduto.idProduto from tbTemp 
 						inner join tbEtiqueta on tbEtiqueta.rfid = tbTemp.etiqueta
 						inner join tbProduto on tbProduto.idProduto = tbEtiqueta.idProduto;";
 
@@ -168,8 +168,6 @@ class MovimentacaoController {
    	}
 
    public static function deletarProdTemp($rfid) {
-
- 
 
 		$sql = "DELETE FROM tbTemp  WHERE etiqueta = '".$rfid."'";
 
