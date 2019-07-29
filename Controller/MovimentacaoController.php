@@ -87,16 +87,16 @@ class MovimentacaoController {
 
 
 			$db = new Conexao();
-			$dados = mysqli_query($db->getConection(),$sql);
+			$itensRetornados = mysqli_query($db->getConection(),$sql);
 
-			return mysqli_num_rows($dados);
+			return mysqli_num_rows($itensRetornados);
 
    }
 
    	public static function getProdutosRetorno($idContrato, $json) {
 
 	$sql = "select DISTINCT tbproduto.idProduto, tbproduto.nomeProd,
-			count(tbEtiqueta.rfid) as enviados, count(tbTemp.etiqueta) as retornados
+			count(DISTINCT tbEtiqueta.rfid) as enviados, count(DISTINCT tbTemp.etiqueta) as retornados
 			from tbProduto
 			inner join tbEtiqueta on tbEtiqueta.idProduto = tbProduto.idProduto 
 			inner join tbItensContrato on tbItensContrato.rfidProduto = tbEtiqueta.rfid

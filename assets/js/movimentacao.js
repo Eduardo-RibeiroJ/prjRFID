@@ -95,12 +95,15 @@ $(document).ready(function(){
 			type:'get',	 
 			dataType: 'json', 
 			url: 'dadosJson.php?acao=verificar&id_contrato='+id_contrato, 
-			success: function(dados){
-				$('#itens strong').text(dados);
+			success: function(itensRetornados){
+				$('#itensRetornados strong').text(itensRetornados);
 
 				var quant = $('#quant').text();
 
-				if( quant == dados ){
+				console.log(quant);
+				console.log(itensRetornados);
+
+				if( quant == itensRetornados ){
 					$('#status img').attr('src', 'images/BolaVerde.png');
 				}else{
 					$('#status img').attr('src', 'images/BolaVermelha.png');
@@ -110,8 +113,8 @@ $(document).ready(function(){
 	}
 
 	var tet = setInterval(atualiza_etiquetagem, 2000);
-	atualiza_movimentacao();
-	var tid = setInterval(atualiza_movimentacao, 1000);
+	//atualiza_movimentacao();
+	var tid = setInterval(atualiza_movimentacao, 2000);
 	var tvi = setInterval(verificarItens, 2000);
 	var tre = setInterval(atualiza_retornados, 2000);
 

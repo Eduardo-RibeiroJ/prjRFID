@@ -37,8 +37,8 @@ $idContrato = $_POST['idContrato'];
 										<td><strong>Status</strong></td>
 									</tr>
 									<tr>
-										<td class="quantItens" id="quant" height="50px"><strong> <?= MovimentacaoController::getQuantProdutosRetorno($idContrato, false, false); ?> </strong></td>
-										<td class="quantItens" id="itens"><strong></strong></td>
+										<td id="quant" class="quantItens" height="50px"><strong> <?= MovimentacaoController::getQuantProdutosRetorno($idContrato, false, false); ?> </strong></td>
+										<td id="itensRetornados" class="quantItens"><strong></strong></td>
 										<td id="status"><img id="imagem" class="bola" src="images/BolaVermelha.png"></td>
 									</tr>
 
