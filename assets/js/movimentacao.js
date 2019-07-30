@@ -80,8 +80,8 @@ $(document).ready(function(){
 				dados = JSON.parse(JSON.stringify(dados));
 				
 				for(var i in dados){
-					$('#tabetiquetas').append('<tr><td>'+dados[i].etiqueta+'</td></tr>');
-					// $('#tabetiquetas').append('<tr><td>'+dados[i].etiqueta+'</td><td><a href="?excluir='+dados[i].etiqueta+'">Remover</a> </td></tr>');
+					//$('#tabetiquetas').append('<tr><td>'+dados[i].etiqueta+'</td></tr>');
+					$('#tabetiquetas').append('<tr><td>'+dados[i].etiqueta+'</td><td><a href="?excluir='+dados[i].etiqueta+'">Remover</a> </td></tr>');
 				}
 			}
 		});
