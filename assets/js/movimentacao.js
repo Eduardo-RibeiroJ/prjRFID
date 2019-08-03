@@ -126,6 +126,8 @@ $(document).ready(function(){
 				if(ret > 0){
 					$('.rowProd-' + id).remove();
 					alert('Removido com sucesso');
+				}else{
+					alert('Erro ao remover produto');
 				}
 			}
 		});
