@@ -67,7 +67,10 @@ if(isset($_GET['acao']) && ($_GET['acao']=='retornados')){
 
 //Apagar
 if(isset($_GET['acao']) && ($_GET['acao']=='apagar')){
-	
+	echo MovimentacaoController::deletarRFIDTemp( $_GET['rfid']);
+}
+
+//Apagar
+if(isset($_GET['acao']) && ($_GET['acao']=='apagarprod')){
 	echo MovimentacaoController::deletarProdTemp( $_GET['rfid']);
-	
 }

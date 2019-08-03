@@ -167,13 +167,25 @@ class MovimentacaoController {
 
    	}
 
-   public static function deletarProdTemp($rfid) {
+   public static function deletarRFIDTemp($rfid) {
 
-		$sql = "DELETE FROM tbTemp  WHERE etiqueta = '".$rfid."'";
+		$sql = "DELETE FROM tbTemp  WHERE etiqueta = $rfid";
 
 		$db = new Conexao();
 		mysqli_query($db->getConection(),$sql); 
 
+   }
+
+   public static function deletarProdTemp($produto) {
+		try{
+			$sql = "DELETE tbtemp FROM tbtemp LEFT JOIN tbetiqueta on tbetiqueta.rfid = tbtemp.etiqueta WHERE tbetiqueta.idProduto = $produto";
+	
+			$db = new Conexao();
+			mysqli_query($db->getConection(),$sql); 
+			return mysqli_affected_rows($db->getConection());
+		} catch (Exception $e) {
+			return false;
+		} 
    }
 
 	public static function deletarMovimentacao($idContrato){
@@ -230,23 +242,18 @@ class MovimentacaoController {
 	        //ENTRADA///////////////
 			}else{
 
-			//ATAULIZA O CONTRATO
+			//ATUALIZA O CONTRATO
 			$sql_contrato = 'UPDATE tbContrato SET status = "E" where  idContrato = "'.$idContrato.'" ';
 		    mysqli_query($db->getConection(),$sql_contrato);  
 
-				//ATAULIZA OS ITENS DO CONTRATO
+				//ATUALIZA OS ITENS DO CONTRATO
 				while($row = $dados_temp->fetch_array(MYSQLI_ASSOC)) { 
-
 					$sql_item = 'UPDATE tbItenscontrato SET horaEntrada = "'.date("Y-m-d H:i:s").'" where = rfidProduto"'.$row['etiqueta'].'" ';
 				}  
-	        
 			}  
 
-
- 
 				//APAGA OS TEMP
 				$sql_temp = "TRUNCATE TABLE tbTemp";
-
 				$db = new Conexao();
 				$dados = mysqli_query($db->getConection(),$sql_temp); 
    		}
