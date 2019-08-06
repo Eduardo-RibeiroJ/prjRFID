@@ -23,8 +23,15 @@ if(isset($_GET['idContrato']) && isset($_GET['status'])){
 if(isset($_GET['acao']) && ($_GET['acao']=='temp')){
 	
 	echo MovimentacaoController::getTemp(true);
-
 }
+
+
+//TEMPORARIAS VINCULADAS COM UM CONTRATO
+if(isset($_GET['acao']) && ($_GET['acao']=='tempContrato')){
+	
+	echo MovimentacaoController::getTempContrato(true, $_GET['id_contrato']);
+}
+
 
 //TEMPORARIAS
 //exemplo de url http://127.0.0.1/prjRFID/dadosProdutos.php?acao=temp

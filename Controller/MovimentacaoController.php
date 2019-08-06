@@ -19,10 +19,10 @@ class MovimentacaoController {
 	public static function getProdutosByMovimentacao($idContrato, $json = false){
 		
 			 $sql = "select * from tbProduto
-					 inner join tbEtiqueta on tbEtiqueta.idProduto = tbProduto.idProduto 
-					 inner join tbItensContrato on tbItensContrato.rfidProduto = tbEtiqueta.rfid inner
-					  join tbContrato on tbContrato.idContrato = tbItensContrato.idContrato
-					   where tbContrato.idContrato =  '".$idContrato."' ";
+					inner join tbEtiqueta on tbEtiqueta.idProduto = tbProduto.idProduto 
+					inner join tbItensContrato on tbItensContrato.rfidProduto = tbEtiqueta.rfid
+                    inner join tbContrato on tbContrato.idContrato = tbItensContrato.idContrato
+					where tbContrato.idContrato =  '".$idContrato."' ";
  
 
 			$db = new Conexao();
@@ -46,6 +46,28 @@ class MovimentacaoController {
 			 $sql = "select distinct tbEtiqueta.rfid, tbProduto.nomeProd, tbProduto.idProduto from tbTemp 
 						inner join tbEtiqueta on tbEtiqueta.rfid = tbTemp.etiqueta
 						inner join tbProduto on tbProduto.idProduto = tbEtiqueta.idProduto;";
+
+			$db = new Conexao();
+			$dados = mysqli_query($db->getConection(),$sql); 
+	       
+	       if($json){	  
+
+	        while($row = $dados->fetch_array(MYSQLI_ASSOC)) { $myArray[] = $row; }
+
+ 			return json_encode($myArray);
+
+	       }else{	    
+    			return $dados;
+	       }
+   }
+
+   public static function getTempContrato($json = false, $id_contrato){ //Pegar os itens da TEMP vinculados com um contrato
+		
+			 $sql = "select distinct tbEtiqueta.rfid, tbProduto.nomeProd, tbProduto.idProduto from tbTemp 
+						inner join tbEtiqueta on tbEtiqueta.rfid = tbTemp.etiqueta
+						inner join tbProduto on tbProduto.idProduto = tbEtiqueta.idProduto
+                        inner join tbitenscontrato on tbitenscontrato.rfidProduto = tbTemp.etiqueta
+						where idContrato =  ".$id_contrato.";";
 
 			$db = new Conexao();
 			$dados = mysqli_query($db->getConection(),$sql); 

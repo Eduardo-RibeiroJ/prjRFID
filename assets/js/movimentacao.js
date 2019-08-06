@@ -26,7 +26,49 @@ $(document).ready(function(){
 		});
 	}
 
-	function atualiza_movimentacao() {
+	function atualiza_movimentacao_entrada() {
+
+		var id_contrato = $('#tbContrato').attr("data-idContrato");
+
+		$.ajax({
+			type:'get',	 
+			dataType: 'json', 
+			url: 'dadosJson.php?acao=tempContrato&id_contrato='+id_contrato, 
+			success: function(dados){
+				
+				dados = JSON.parse(JSON.stringify(dados));
+
+				var Produtos = {};
+				$(dados).each(function(key, dadosProd) {
+					if( Produtos[dadosProd.idProduto] === undefined ){
+						Produtos[dadosProd.idProduto] = {'idProduto': dadosProd.idProduto, 'nomeProd': dadosProd.nomeProd, 'count': 1 }
+					}else{
+						Produtos[dadosProd.idProduto].count += 1; 
+					}
+				});
+
+				//Logica entrada de produtos
+				$.each(Produtos, function( index, value ) {
+					var line = $('.item-' + value.idProduto);
+					$(line).find('.retornados').text(value.count); //Atualiza a quantidade de itens retornados por produto
+
+					var quant = parseInt( $(line).find('.quantidade').text() );
+					var botao = $(line).find('.status img');
+					if(quant === value.count){
+						$(botao).attr('src', 'images/BolaVerde.png');
+					}else{
+						$(botao).attr('src', 'images/BolaVermelha.png');
+					}
+				});
+
+			}
+		});
+	}
+
+	function atualiza_movimentacao_saida() {
+
+		var id_contrato = $('#tbContrato').attr("data-idContrato");
+
 		$.ajax({
 			type:'get',	 
 			dataType: 'json', 
@@ -44,20 +86,6 @@ $(document).ready(function(){
 					}
 				});
 
-				//Logica entrada de produtos
-				$.each(Produtos, function( index, value ) {
-					var line = $('.item-' + value.idProduto);
-					$(line).find('.retornados').text(value.count);
-
-					var quant = parseInt( $(line).find('.quantidade').text() );
-					var botao = $(line).find('.status img');
-					if(quant === value.count){
-						$(botao).attr('src', 'images/BolaVerde.png');
-					}else{
-						$(botao).attr('src', 'images/BolaVermelha.png');
-					}
-				});
-
 				//Logica saida de produtos
 				$.each(Produtos, function( index, value ) {
 					var line = $('.rowProd-' + value.idProduto);
@@ -71,10 +99,10 @@ $(document).ready(function(){
 						$('#tabela').append(html);
 					}
 				});
-
 			}
 		});
 	}
+
 
 	function atualiza_etiquetagem() { 
 		$('#tabetiquetas').empty();  
@@ -102,7 +130,7 @@ $(document).ready(function(){
 			dataType: 'json', 
 			url: 'dadosJson.php?acao=verificar&id_contrato='+id_contrato, 
 			success: function(itensRetornados){
-				$('#itensRetornados strong').text(itensRetornados);
+				$('#itensRetornados strong').text(itensRetornados); //Atualiza o <strong> com a quantidade total de itens retornados
 
 				var quant = $('#quant').text();
 				if( quant == itensRetornados ){
@@ -133,9 +161,9 @@ $(document).ready(function(){
 		});
 	});
 	
-	atualiza_movimentacao();
 	var tet = setInterval(atualiza_etiquetagem, 2000);
-	var tid = setInterval(atualiza_movimentacao, 2000);
+	var tame = setInterval(atualiza_movimentacao_saida, 2000);
+	var tams = setInterval(atualiza_movimentacao_entrada, 2000);
 	var tvi = setInterval(verificarItens, 2000);
 	var tre = setInterval(atualiza_retornados, 2000);
 
