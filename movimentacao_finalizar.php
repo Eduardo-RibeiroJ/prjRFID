@@ -12,7 +12,7 @@
 
 				<?php if(!empty($_GET['status']) && !empty($_GET['idContrato']) ): ?>
 
-					<?php MovimentacaoController::movimentacao($_GET['status'],$_GET['idContrato']); ?>
+					<?php MovimentacaoController::movimentacao($_GET['status'], $_GET['idContrato'], $_GET['obs']); ?>
 
 					<!-- Conteúdo -->
 					<section>

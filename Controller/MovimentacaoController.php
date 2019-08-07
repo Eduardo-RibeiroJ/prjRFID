@@ -259,49 +259,62 @@ class MovimentacaoController {
    }
    
 
-	public static function movimentacao($status, $idContrato){
+	public static function movimentacao($status, $idContrato, $obs) {
 
-		if(!empty($status) && !empty($idContrato) )
+		if(!empty($status) && !empty($idContrato))
 		{
-
 			$db = new Conexao();
 
 			//PEGA TODOS OS TEMPORARIOS
  			$sql_temp = "select  * from  tbTemp";
-			$dados_temp = mysqli_query($db->getConection(),$sql_temp);  
+			$dados_temp = mysqli_query($db->getConection(), $sql_temp);
 
-
-			//SAIDA////////////////
-			if($status == 'S')				
+			if($status == 'S') // Saida		
 			{//CRIA O CONTRATO
 				$sql_contrato = 'INSERT INTO tbContrato (idContrato, status) values ("'.$idContrato.'", "'.$status.'")';
 			    mysqli_query($db->getConection(),$sql_contrato);   
 
-			//CRIA OS ITENS DO CONTRATO
-			while($row = $dados_temp->fetch_array(MYSQLI_ASSOC)) { 
+				//CRIA OS ITENS DO CONTRATO
+				while($row = $dados_temp->fetch_array(MYSQLI_ASSOC)) { 
 
-	        	$sql = 'INSERT INTO tbItensContrato (idContrato, rfidProduto, horaSaida) values ("'.$idContrato.'", "'.$row['etiqueta'].'", "'.date("Y-m-d H:i:s").'")';
-			    mysqli_query($db->getConection(),$sql);
+		        	$sql = 'INSERT INTO tbItensContrato (idContrato, rfidProduto, horaSaida) values ("'.$idContrato.'", "'.$row['etiqueta'].'", "'.date("Y-m-d H:i:s").'")';
+				    mysqli_query($db->getConection(),$sql);
+		       	} 
+			}
 
-	       } 
-
-	        //ENTRADA///////////////
-			}else{
-
-			//ATUALIZA O CONTRATO
-			$sql_contrato = 'UPDATE tbContrato SET status = "E" where  idContrato = "'.$idContrato.'" ';
-		    mysqli_query($db->getConection(),$sql_contrato);  
+			if($status == 'E' || $status == 'O') // Entrada do contrato
+			{
+				//ATUALIZA O CONTRATO
+				$sql_contrato = 'UPDATE tbContrato SET status = "E" where  idContrato = "'.$idContrato.'" ';
+			    mysqli_query($db->getConection(),$sql_contrato);  
 
 				//ATUALIZA OS ITENS DO CONTRATO
 				while($row = $dados_temp->fetch_array(MYSQLI_ASSOC)) { 
 					$sql_item = 'UPDATE tbItenscontrato SET horaEntrada = "'.date("Y-m-d H:i:s").'" where = rfidProduto"'.$row['etiqueta'].'" ';
-				}  
-			}  
+					mysqli_query($db->getConection(),$sql_item);  
+				}
+			}
 
-				//APAGA OS TEMP
-				$sql_temp = "TRUNCATE TABLE tbTemp";
-				$db = new Conexao();
-				$dados = mysqli_query($db->getConection(),$sql_temp); 
+			if($status == 'O') // Inserção dos itens que não voltaram
+			{
+				$itensNaoRetornados = MovimentacaoController::getProdutosNaoRetornados(false, $idContrato);
+
+				while($row = $itensNaoRetornados->fetch_array(MYSQLI_ASSOC)) { 
+
+					$sql_item = 'INSERT INTO tbNaoRetornado (rfidProduto, idContrato) values ("'.$row['rfid'].'", "'.$idContrato.'");';
+					mysqli_query($db->getConection(),$sql_item);
+				}
+
+				//Colocando a observação no contrato
+				$sql = 'UPDATE tbContrato SET obs = "'.$obs.'" where idContrato = "'.$idContrato.'" ';
+			    mysqli_query($db->getConection(),$sql); 
+
+			}
+
+			//APAGA A TEMP
+			$sql_temp = "TRUNCATE TABLE tbTemp";
+			$db = new Conexao();
+			$dados = mysqli_query($db->getConection(),$sql_temp); 
    		}
 
 	}

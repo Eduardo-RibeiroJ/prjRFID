@@ -93,7 +93,7 @@ function confirmar() {
 	var val1 = document.getElementById("quant").innerText;
 	var val2 = document.getElementById("itensRetornados").innerText;
 	if(parseInt(val1) == parseInt(val2)) {
-		window.location.replace("movimentacao_finalizar.php?status=E&idContrato=<?php echo $idContrato; ?>");
+		window.location.replace("movimentacao_finalizar.php?status=E&idContrato=<?php echo $idContrato; ?>&obs=");
 	}
 	else {
 		var confirmando = confirm("Deseja finalizar a entrada mesmo com a diferença de itens?");

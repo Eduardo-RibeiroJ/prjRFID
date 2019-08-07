@@ -55,3 +55,20 @@ VALUES
 ("Cadeira",0,"Preta",NULL,50,50),
 ("Mesa",0,"Preta",NULL,20,20),
 ("Luminária",0,"Preta",NULL,10,10);
+
+
+
+/****************** Alterações (Só executar quem tem o BD antigo) */
+
+CREATE TABLE tbNaoRetornado (
+	rfidProduto varchar (50) NOT NULL,
+	idContrato int NOT NULL,
+	CONSTRAINT PK_RFID_IDCONTRATO PRIMARY KEY (rfidProduto, idContrato)
+);
+
+ALTER TABLE tbItensContrato DROP COLUMN obs;
+ALTER TABLE tbContrato ADD obs varchar(50);
+
+ALTER TABLE tbEtiqueta CHANGE rfid rfid varchar(50) not null;
+ALTER TABLE tbItensContrato CHANGE rfidProduto rfidProduto varchar(50) not null;
+ALTER TABLE tbTemp CHANGE etiqueta etiqueta varchar(50) not null;
