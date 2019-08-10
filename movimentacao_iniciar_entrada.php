@@ -3,8 +3,20 @@ include_once "Model/Conexao.php";
 include_once "Controller/MovimentacaoController.php";
 
 $idContrato = $_POST['idContrato'];
-?>
 
+$contrato = MovimentacaoController::verificaContrato($idContrato);
+$linha = mysqli_fetch_array($contrato);
+
+if(mysqli_num_rows($contrato) == 0) {
+	echo "<script>alert('O contrato $idContrato não existe'); window.location.replace('movimentacao.php'); </script>";
+	die;
+}
+
+if ($linha['status'] == 'E') {
+	echo "<script>alert('O contrato $idContrato já foi encerrado'); window.location.replace('movimentacao.php'); </script>";
+	die;
+}
+?>
 
 <?php include_once 'header.php'; ?>
 <!-- html-->
