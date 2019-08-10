@@ -79,7 +79,27 @@ class ProdutoController
            return $SQL;
 
         }
-     }     
+     }
+
+
+    public static function getProdutosJson($idProduto = null) {
+
+            $where = '';
+
+            if(!empty($idProduto)){
+                $where = ' where  idProduto = '.$idProduto.' ';
+            }
+
+            $sql = "SELECT * FROM tbProduto ".$where." ORDER BY idProduto DESC;"; 
+
+            $db = new Conexao();
+            $dados = mysqli_query($db->getConection(), $sql); 
+                while($row = $dados->fetch_array(MYSQLI_ASSOC)) { $myArray[] = $row; }
+
+                return json_encode($myArray);
+ 
+    }
+
 }
 
 ?>

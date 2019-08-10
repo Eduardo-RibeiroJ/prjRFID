@@ -1,15 +1,19 @@
 $(document).ready(function(){
 
+	/**
+	 * Atualiza a quantidade de itens retornados e o status geral da pagina
+	 * movimentação entrada.
+	 */
 	function atualiza_retornados(){
 		var id_contrato = $('#tbContrato').attr("data-idContrato");
+		
 		$.ajax({
 			type:'get',	 
 			dataType: 'json', 
 			url: 'dadosJson.php?acao=retornados&id_contrato=' + id_contrato,
 			success: function(dados){
 				
-				data = JSON.parse(JSON.stringify(dados));
-				
+				data = JSON.parse(JSON.stringify(dados));		
 				$(data).each(function(dadosProduto) {
 					var td = $('.item-' + dadosProduto.idProduto ).find('.retornados');
 					$(td).text(dadosProduto.retornados);
@@ -20,14 +24,17 @@ $(document).ready(function(){
 					}else{
 						$(status).attr('src', 'images/BolaVermelha.png');
 					}
+
 				});
 				
 			}
 		});
 	}
 
+	/**
+	 * Atualiza a lista de produtos da pagina de entrada, listando produto a produto
+	 */
 	function atualiza_movimentacao_entrada() {
-
 		var id_contrato = $('#tbContrato').attr("data-idContrato");
 
 		$.ajax({
@@ -37,7 +44,6 @@ $(document).ready(function(){
 			success: function(dados){
 				
 				dados = JSON.parse(JSON.stringify(dados));
-
 				var Produtos = {};
 				$(dados).each(function(key, dadosProd) {
 					if( Produtos[dadosProd.idProduto] === undefined ){
@@ -65,10 +71,11 @@ $(document).ready(function(){
 		});
 	}
 
+	/**
+	 * Atualiza a lista de produtos da pagina de saida, listando produto a produto
+	 */
 	function atualiza_movimentacao_saida() {
-
 		var id_contrato = $('#tbContrato').attr("data-idContrato");
-
 		$.ajax({
 			type:'get',	 
 			dataType: 'json', 
@@ -104,6 +111,9 @@ $(document).ready(function(){
 	}
 
 
+	/**
+	 * Atualiza a lista de produtos que estão sendo etiquetados.
+	 */
 	function atualiza_etiquetagem() { 
 		var id_produto = $('#idProduto').attr("data-idProduto");
 
@@ -123,7 +133,9 @@ $(document).ready(function(){
 		});
 	}
 
-	
+	/**
+	 * Verifica o status dos itens retornados na lista de produtos que estão entrando.
+	 */
 	function verificarItens() { 
 		var id_contrato = $('#tbContrato').attr("data-idContrato");
 		
@@ -143,7 +155,11 @@ $(document).ready(function(){
 			}
 		});
 	}
-	
+
+
+	/**
+	 * Função de remover itens na tabela da pagina de saida.
+	 */
 	$('body').on('click', '#tabela .remover', function(e) {
 		e.preventDefault();
 		var id = $(this).data('id');
@@ -163,10 +179,19 @@ $(document).ready(function(){
 		});
 	});
 
-	var tet = setInterval(atualiza_etiquetagem, 2000);
-	var tame = setInterval(atualiza_movimentacao_saida, 2000);
-	var tams = setInterval(atualiza_movimentacao_entrada, 2000);
-	var tvi = setInterval(verificarItens, 2000);
-	var tre = setInterval(atualiza_retornados, 2000);
+	/**
+	 * Verifica a URL e execulta os AJAX de cada um.
+	 */
+	var path = window.location.pathname;
+	var location = path.split('/').pop();
 
+	if(location === 'movimentacao_iniciar_saida.php'){
+		var tame = setInterval(atualiza_movimentacao_saida, 2000);
+	}else if(location === 'movimentacao_iniciar_entrada.php'){
+		var tams = setInterval(atualiza_movimentacao_entrada, 2000);
+		var tvi = setInterval(verificarItens, 2000);s
+		var tre = setInterval(atualiza_retornados, 2000);
+	}else if(location === 'produto_etiquetar.php'){
+		var tet = setInterval(atualiza_etiquetagem, 2000);
+	}
 });
