@@ -140,20 +140,29 @@ class MovimentacaoController {
 	       }
    }
 
-   public static function verificaProdutos($json = false, $id_contrato = 0){
+	public static function verificaProdutos($json = false, $id_contrato = 0){
 
 			$sql = "select DISTINCT etiqueta from tbTemp
 					inner join tbitenscontrato on tbitenscontrato.rfidProduto = tbTemp.etiqueta
 					where  idContrato = ".$id_contrato.";";
 
-
 			$db = new Conexao();
 			$itensRetornados = mysqli_query($db->getConection(),$sql);
 
 			return mysqli_num_rows($itensRetornados);
+	}
 
-   }
+	public static function verificaContrato($id_contrato){
 
+			$sql = "select idContrato, status from tbContrato
+					where  idContrato = ".$id_contrato.";";
+
+			$db = new Conexao();
+			$contrato = mysqli_query($db->getConection(), $sql);
+
+			return $contrato;
+	}
+	
    	public static function getProdutosRetorno($idContrato, $json) {
 
 	$sql = "select DISTINCT tbproduto.idProduto, tbproduto.nomeProd,

@@ -57,7 +57,7 @@ class UsuarioController
 
         $SQL = $this->db->getConection()->prepare("DELETE FROM tbUsuario WHERE idUsuario = ?");
         $SQL->bind_param("i", $U1);
-        $U1 = $produto->getIdUsuario();
+        $U1 = $usuario->getIdUsuario();
         $SQL->execute();
         
         return true;
@@ -66,7 +66,7 @@ class UsuarioController
 
     public function Listar(Usuario $usuario) {
 
-        if ($produto->getIdUsuario() == NULL) {
+        if ($usuario->getIdUsuario() == NULL) {
 
            $SQL = $this->db->getConection()->query("SELECT * FROM tbUsuario");
            return $SQL;

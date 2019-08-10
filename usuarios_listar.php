@@ -1,19 +1,19 @@
 <?php 
 
 include_once "Model/Conexao.php";
-include_once "Model/Produto.php";
-include_once "Controller/ProdutoController.php";
+include_once "Model/Usuario.php";
+include_once "Controller/UsuarioController.php";
 
-$cn = new Conexao();
-$cp = new Produto();
+$conn = new Conexao();
+$usuario = new Usuario();
 
-if(isset($_GET['apagar']) && isset($_GET['idProduto'])) {
+if(isset($_GET['apagar']) && isset($_GET['idUsuario'])) {
 
-	$cp->setIdProduto($_GET["idProduto"]);
-	$pc = new ProdutoController($cn);
-	$pc->Apagar($cp);
+	$usuario->setIdUsuario($_GET["idUsuario"]);
+	$uController = new UsuarioController($conn);
+	$uController->Apagar($usuario);
 
-	echo "<script> alert('Produto deletado!'); window.location.replace('produto_listar.php'); </script>";
+	echo "<script> alert('Usuário removido!'); window.location.replace('usuarios_listar.php'); </script>";
 }
 ?>
 
@@ -32,7 +32,7 @@ if(isset($_GET['apagar']) && isset($_GET['idProduto'])) {
 									<h1>Usários</h1>
 								</div>
 								<div class="col-4">
-									<a class="button" href="produto_inserir.php">Inserir Novo Usuario</a>
+									<a class="button" href="usuario_inserir.php">INSERIR USUÁRIO</a>
 									</div>
 							</div>
 						</header>
@@ -41,21 +41,25 @@ if(isset($_GET['apagar']) && isset($_GET['idProduto'])) {
 								<tr>
 									<th>ID</th>
 									<th>Nome</th>
-									<th> </th>
+									<th>E-mail</th>
+									<th>Nível</th>
+									<th></th>
+									<th></th>
 								</tr>
 
 								<?php
-									$cn = new Conexao();
-									$cp = new Produto();
-									$pc = new ProdutoController($cn);
-									$query = $pc->Listar($cp);
-
+									$conn = new Conexao();
+									$usuario = new Usuario();
+									$uController = new UsuarioController($conn);
+									$query = $uController->Listar($usuario);
 								?>
 								<?php while($reg = $query->fetch_array()): ?>
 
 								<tr>
 									<td> <?= $reg["idUsuario"];?> </td>
-									<td> <?= $reg["nome"];?> </td>		
+									<td> <?= $reg["nomeUsuario"];?> </td>
+									<td> <?= $reg["email"];?> </td>
+									<td> <?= $reg["nivel"];?> </td>								
 									
 									<center>
 										<td> <a href="usuario_alterar.php?idUsuario=<?=$reg["idUsuario"];?>">Alterar</a> </td>
