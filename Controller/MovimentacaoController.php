@@ -154,7 +154,7 @@ class MovimentacaoController {
 
 	public static function verificaContrato($id_contrato){
 
-			$sql = "select idContrato, status from tbContrato
+			$sql = "select * from tbContrato
 					where  idContrato = ".$id_contrato.";";
 
 			$db = new Conexao();

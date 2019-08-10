@@ -27,7 +27,7 @@ include_once "Controller/MovimentacaoController.php";
 											<center>
 											<p><b>SAÍDA</b></p>
 											<p>Número do Contrato <br>
-												<input type="text" name="idContrato" id="idContrato" required="">
+												<input type="text" name="idContrato" id="idContrato" required="" pattern="[0-9]{1,}">
 											</p>
 											<input type="submit" name="btnIniciarSaida" id="btnIniciarSaida" value="Iniciar Saída">
 											</center>
@@ -41,7 +41,7 @@ include_once "Controller/MovimentacaoController.php";
 											<center>
 											<p><b>ENTRADA</b></p>
 											<p>Número do Contrato <br>
-												<input type="text" name="idContrato" id="idContrato" required="">
+												<input type="text" name="idContrato" id="idContrato" required="" pattern="[0-9]{1,}">
 											</p>
 											<input type="submit" name="btnIniciarEntrada" id="btnIniciarEntrada" value="Iniciar Entrada">
 											</center>
