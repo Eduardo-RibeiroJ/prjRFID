@@ -14,9 +14,15 @@ include_once "Controller/EtiquetaController.php";
 
 
 //LISTA DE TODOS OS PRODUTOS
-//exemplo de url http://127.0.0.1/prjRFID/dadosJson.php?acao=produtos&id=1
+//exemplo de url http://127.0.0.1/prjRFID/dadosJson.php?acao=produtos&idProduto=1
 if(isset($_GET['acao']) && $_GET['acao'] == 'produtos'){
-	echo ProdutoController::getProdutosJson();
+	
+	$idProduto = null;
+
+	if(!empty($_GET['idProduto']))
+		$idProduto = $_GET['idProduto'];
+
+	echo ProdutoController::getProdutosJson($idProduto);
 }
 
 //LISTA DE PRODUTOS EM UM CONTRATO
