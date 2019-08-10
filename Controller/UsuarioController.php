@@ -1,7 +1,7 @@
 <?php
 
 include_once "Model/Conexao.php";
-
+include_once "Model/Bcrypt.php"; 
 class UsuarioController
 {
 
@@ -77,7 +77,37 @@ class UsuarioController
            return $SQL;
 
         }
-     }     
+     }  
+
+     public static function  logar(){
+
+        $response = false;
+
+        if(!empty($_POST['login']) && !empty($_POST['senha'])){
+
+            $login   =  $_POST['login'];
+            $senha   =  $_POST['senha'];
+                
+            $sql = "SELECT * FROM tbUsuario WHERE  email='".$login."' ;";
+            $db = new Conexao();
+            $dados = mysqli_query($db->getConection(), $sql);
+
+            if(mysqli_num_rows($dados)){
+
+                $linha=mysqli_fetch_array($dados);
+                if(Bcrypt::check($senha, $linha['senha'])){
+
+                    $_SESSION['admin'] = 1;
+                    $_SESSION['nomeUsuario'] = $linha['nomeUsuario'];
+                    $_SESSION['nivel'] = $linha['nivel'];
+                    $response = true;
+
+                }
+
+            }
+        }   
+        return $response;
+    }
 }
 
 ?>

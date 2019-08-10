@@ -1,3 +1,21 @@
+<?php 
+session_start();
+
+if(isset($_POST['acao']) && ($_POST['acao'] == 'login')){
+
+include "Controller/UsuarioController.php";
+ 
+	 if(UsuarioController::logar() == false){
+
+	    echo "<script>window.alert('Dados incorretos, tente novamente!'); history.go(-1);</script>";
+	 }
+}
+
+if(empty($_SESSION['admin'])){
+	 echo "<script>location.href='login.php'</script>";
+}
+?>
+
 <!DOCTYPE HTML>
 <html>
 
@@ -37,7 +55,7 @@
 
 				<!-- Cabeçalho na parte superior de todas as páginas -->
 				<header id="header">
-					<a href="index.php" class="logo"><strong>Estoque</strong> RFID</a>
+					<a href="index.php" class="logo"><strong>Estoque</strong> RFID</a> | Bem vindo(a) <?php echo $_SESSION['nomeUsuario']; ?> - <a href="logout.php">Sair</a>
 				</header>
 
 				<!-- Fim do Cabeçalho que irá em todas as páginas  -->

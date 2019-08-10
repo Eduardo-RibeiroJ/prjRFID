@@ -15,15 +15,17 @@
 
 								<p><strong>Acesso</strong> Sistema de Gestão de Estoque</p>
 						 
-								<form action="produto_inserir.php" method="post">
+								<form action="index.php" method="post">
+
+									<input type="hidden" name="acao" value="login">
 
 									<p>
-										<label for="txtNomeProduto">Login</label>
-										<input type="email" placeholder="Insira o seu e-mail" required="required" name="txtNomeProduto" id="txtNomeProduto" />
+										<label for="login">Login</label>
+										<input type="email" placeholder="Insira o seu e-mail" required="required" name="login" id="login" />
 									</p>  
 									<p>
-										<label for="txtNomeProduto">Senha</label>
-										<input type="password" placeholder="Insira a senha" required="required" name="txtNomeProduto" id="txtNomeProduto" />
+										<label for="senha">Senha</label>
+										<input type="password" placeholder="Insira a senha" required="required" name="senha" id="senha" />
 									</p>  
 
 									<p>
