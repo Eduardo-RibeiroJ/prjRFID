@@ -1,5 +1,9 @@
 $(document).ready(function(){
 
+	/**
+	 * Atualiza a quantidade de itens retornados e o status geral da pagina
+	 * movimentação entrada.
+	 */
 	function atualiza_retornados(){
 		var id_contrato = $('#tbContrato').attr("data-idContrato");
 		
@@ -27,6 +31,9 @@ $(document).ready(function(){
 		});
 	}
 
+	/**
+	 * Atualiza a lista de produtos da pagina de entrada, listando produto a produto
+	 */
 	function atualiza_movimentacao_entrada() {
 		var id_contrato = $('#tbContrato').attr("data-idContrato");
 
@@ -64,6 +71,9 @@ $(document).ready(function(){
 		});
 	}
 
+	/**
+	 * Atualiza a lista de produtos da pagina de saida, listando produto a produto
+	 */
 	function atualiza_movimentacao_saida() {
 		var id_contrato = $('#tbContrato').attr("data-idContrato");
 		$.ajax({
@@ -101,6 +111,9 @@ $(document).ready(function(){
 	}
 
 
+	/**
+	 * Atualiza a lista de produtos que estão sendo etiquetados.
+	 */
 	function atualiza_etiquetagem() { 
 		var id_produto = $('#idProduto').attr("data-idProduto");
 
@@ -120,7 +133,9 @@ $(document).ready(function(){
 		});
 	}
 
-	
+	/**
+	 * Verifica o status dos itens retornados na lista de produtos que estão entrando.
+	 */
 	function verificarItens() { 
 		var id_contrato = $('#tbContrato').attr("data-idContrato");
 		
@@ -140,7 +155,11 @@ $(document).ready(function(){
 			}
 		});
 	}
-	
+
+
+	/**
+	 * Função de remover itens na tabela da pagina de saida.
+	 */
 	$('body').on('click', '#tabela .remover', function(e) {
 		e.preventDefault();
 		var id = $(this).data('id');
@@ -160,6 +179,9 @@ $(document).ready(function(){
 		});
 	});
 
+	/**
+	 * Verifica a URL e execulta os AJAX de cada um.
+	 */
 	var path = window.location.pathname;
 	var location = path.split('/').pop();
 
