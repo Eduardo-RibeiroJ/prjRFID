@@ -6,13 +6,17 @@ if(isset($_GET['apagar']) && isset($_GET['rfid'])) {
 
 	echo "<script> alert('Produto removido!'); </script>";
 	deletarProdTemp($rfid);
-
-	echo "<script> alert('Produto removido!'); </script>";
 	return;
 }
 
 $idContrato = $_POST['idContrato'];
+$contrato = MovimentacaoController::verificaContrato($idContrato);
 
+if(mysqli_num_rows($contrato) > 0)
+{
+	echo "<script>alert('O contrato $idContrato já existe'); window.location.replace('movimentacao.php'); </script>";
+	die;
+}
 
 ?>
 

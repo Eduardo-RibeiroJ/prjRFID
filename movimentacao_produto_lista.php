@@ -68,8 +68,18 @@ include_once "Controller/MovimentacaoController.php";
 										</tr>
 
 										<?php endwhile; ?>
+										<?php
+										$dadosContrato = MovimentacaoController::verificaContrato($_GET['idContrato']);
+										$linha = mysqli_fetch_array($dadosContrato);
+										?>
+									
+
+									</table>									
+										
+									<h4>Motivo: <?= $linha['obs']; ?></h4>	
+										
 									<?php endif; ?>
-								</table>
+									
 							</div>
 						</center>
 					</section>
