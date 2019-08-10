@@ -43,6 +43,16 @@ CREATE TABLE tbTemp (
 	CONSTRAINT PK_IDTEMP PRIMARY KEY (IdTemp)
 );
 
+CREATE TABLE tbUsuario (
+	idUsuario int NOT NULL AUTO_INCREMENT,
+	nomeUsuario varchar (50) NOT NULL,
+	email varchar (50) NOT NULL,
+	senha varchar (200) NOT NULL,
+	nivel int NOT NULL,
+	CONSTRAINT PK_USUARIO PRIMARY KEY (idUsuario)
+);
+
+
 /******************** Inserção de dados */
 
 INSERT INTO `tbProduto`(`nomeProd`, `personalizado`, `cor`, `obs`, `quantTotal`, `quantDisponivel`)

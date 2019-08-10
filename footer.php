@@ -30,7 +30,10 @@
 								<a href="produto_listar.php">Produtos</a>									
 							</li>
 							<li>
-								<a href="etiquetas_lista.php">Etiquetas</a>											
+								<a href="etiquetas_listar.php">Etiquetas</a>											
+							</li>
+							<li>
+								<a href="usuarios_listar.php">Usuários</a>											
 							</li>
 							<!-- PODEMOS DEIXAR PARA UMA SEGUNDA ETAPA
 							<li>
