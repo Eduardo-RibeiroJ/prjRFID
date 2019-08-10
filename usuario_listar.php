@@ -29,7 +29,7 @@ if(isset($_GET['apagar']) && isset($_GET['idUsuario'])) {
 						<header class="main">
 							<div class="row">
 								<div class="col-8">
-									<h1>Usários</h1>
+									<h1>Usuários</h1>
 								</div>
 								<div class="col-4">
 									<a class="button" href="usuario_inserir.php">INSERIR USUÁRIO</a>

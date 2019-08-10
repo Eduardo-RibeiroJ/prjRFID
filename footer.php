@@ -33,7 +33,7 @@
 								<a href="etiquetas_listar.php">Etiquetas</a>											
 							</li>
 							<li>
-								<a href="usuarios_listar.php">Usuários</a>											
+								<a href="usuario_listar.php">Usuários</a>											
 							</li>
 							<!-- PODEMOS DEIXAR PARA UMA SEGUNDA ETAPA
 							<li>

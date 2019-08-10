@@ -5,9 +5,9 @@ if(isset($_POST['acao']) && ($_POST['acao'] == 'login')){
 
 include "Controller/UsuarioController.php";
  
-	 if(UsuarioController::logar() == false){
-
+	 if(UsuarioController::logar() == false) {
 	    echo "<script>window.alert('Dados incorretos, tente novamente!'); history.go(-1);</script>";
+		die;
 	 }
 }
 
@@ -55,7 +55,13 @@ if(empty($_SESSION['admin'])){
 
 				<!-- Cabeçalho na parte superior de todas as páginas -->
 				<header id="header">
-					<a href="index.php" class="logo"><strong>Estoque</strong> RFID</a> | Bem vindo(a) <?php echo $_SESSION['nomeUsuario']; ?> - <a href="logout.php">Sair</a>
+					<div class="row">
+						<div class="col-6">
+							<a href="index.php" class="logo"><strong>Estoque</strong> RFID</a>
+						</div>
+						<div class="col-6 align-right logo">
+							Bem vindo(a) <strong><?php echo $_SESSION['nomeUsuario']; ?></strong> - <a href="logout.php">Sair</a>
+						</div>
 				</header>
 
 				<!-- Fim do Cabeçalho que irá em todas as páginas  -->

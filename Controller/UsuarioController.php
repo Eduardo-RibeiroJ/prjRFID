@@ -4,8 +4,6 @@ include_once "Model/Conexao.php";
 include_once "Model/Bcrypt.php"; 
 class UsuarioController
 {
-
-    
     public function __construct(Conexao $db)
     {
         $this->db = $db;
@@ -25,7 +23,8 @@ class UsuarioController
             die(mysqli_error($this->db->getConection()));
         }
 
-        mysqli_stmt_bind_param($stmt, 'sssi', $nomeUsuario, $email, $senha, $nivel);
+		$senha_banco =  Bcrypt::hash($senha);
+        mysqli_stmt_bind_param($stmt, 'sssi', $nomeUsuario, $email, $senha_banco, $nivel);
         mysqli_stmt_execute($stmt);
         mysqli_stmt_close($stmt);
 
@@ -47,7 +46,8 @@ class UsuarioController
             die(mysqli_error($this->db->getConection()));
         } 
         
-        mysqli_stmt_bind_param($stmt, 'sssii', $nomeUsuario, $email, $senha, $nivel, $idUsuario);
+		$senha_banco =  Bcrypt::hash($senha);
+        mysqli_stmt_bind_param($stmt, 'sssii', $nomeUsuario, $email, $senha_banco, $nivel, $idUsuario);
         mysqli_stmt_execute($stmt);
         mysqli_stmt_close($stmt);
 
