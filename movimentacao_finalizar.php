@@ -14,16 +14,15 @@
 
 					<?php MovimentacaoController::movimentacao($_GET['status'], $_GET['idContrato'], $_GET['obs']); ?>
 
-					<!-- Conteúdo -->
 					<section>
 						<header class="main">
 							<div class="row">
 								<div class="col-12 text-center center">
-									<h3><?php echo ($_GET['status'] == 'S') ? 'Saída' : 'Entrada' ?> de Estoque feita com sucesso Contrato n°: <?php echo $_GET['idContrato'] ?></h3>
+									<h2><?= ($_GET['status'] == 'S') ? 'Saída' : 'Entrada' ?> de estoque realizada com sucesso - Contrato <?= $_GET['idContrato'] ?></h2>
 								</div> 
 								<div class="col-12">
-									<a class="button" href="movimentacao_produto_lista.php?status=<?=$_GET["status"];?>&idContrato=<?=$_GET["idContrato"];?>">VIZUALIZAR PRODUTOS</a>
-									</div>
+									<a class="button" href="movimentacao_produto_lista.php?status=<?=$_GET["status"];?>&idContrato=<?=$_GET["idContrato"];?>">VISUALIZAR PRODUTOS</a>
+								</div>
 							</div>
 						</header>
 						<center> 

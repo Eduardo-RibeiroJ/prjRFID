@@ -95,7 +95,7 @@ $(document).ready(function(){
 						var html = '<tr class="rowProd-' + value.idProduto +'"><td>' + value.idProduto +'</td>'+
 						'<td>' + value.nomeProd +'</td>'+
 						'<td class="count">' + value.count +'</td>'+
-						'<td><a data-id="' + value.idProduto + '" class="remover" href="#">REMOVER TODOS<a></td></tr>';
+						'<td><a data-id="' + value.idProduto + '" class="remover" href="#">Remover Todos<a></td></tr>';
 						$('#tabela').append(html);
 					}
 				});
@@ -105,6 +105,8 @@ $(document).ready(function(){
 
 
 	function atualiza_etiquetagem() { 
+		var id_produto = $('#idProduto').attr("data-idProduto");
+
 		$('#tabetiquetas').empty();  
 		$.ajax({
 			type:'get',	 
@@ -114,8 +116,8 @@ $(document).ready(function(){
 				
 				dados = JSON.parse(JSON.stringify(dados));
 				
-				for(var i in dados){
-					$('#tabetiquetas').append('<tr><td>'+dados[i].etiqueta+'</td><td><a href="?excluir='+dados[i].etiqueta+'">Remover</a> </td></tr>');
+				for(var i in dados) {
+					$('#tabetiquetas').append('<tr><td>'+dados[i].etiqueta+'</td><td><a href="?idProduto='+id_produto+'&excluir='+ dados[i].etiqueta +'">Remover</a> </td></tr>');
 				}
 			}
 		});
@@ -160,7 +162,7 @@ $(document).ready(function(){
 			}
 		});
 	});
-	
+
 	var tet = setInterval(atualiza_etiquetagem, 2000);
 	var tame = setInterval(atualiza_movimentacao_saida, 2000);
 	var tams = setInterval(atualiza_movimentacao_entrada, 2000);

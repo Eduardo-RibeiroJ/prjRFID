@@ -13,34 +13,37 @@ include_once "Controller/MovimentacaoController.php";
 					<!-- Conteúdo -->
 					<section>
 						<header class="main">
-							<h1>Movimentação</h1>
+							<div class="row">
+								<div class="col-12">
+									<h1>Movimentação</h1>
+								</div>
+							</div>
 						</header>
 						<center>
 							<table border=0>
 								<tr>
-									
 									<td>
 										<form method="POST" action="movimentacao_iniciar_saida.php">
 											<center>
-											<p><b>SAÍDAS</b></p>
+											<p><b>SAÍDA</b></p>
 											<p>Número do Contrato <br>
 												<input type="text" name="idContrato" id="idContrato" required="">
 											</p>
-											<input type="submit" name="btnIniciarSaida" id="btnIniciarSaida" value="Iniciar Saídas">
+											<input type="submit" name="btnIniciarSaida" id="btnIniciarSaida" value="Iniciar Saída">
 											</center>
 										</form>
 									</td>
 									<td>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 									</td>
 									<td>
 										<form method="POST" action="movimentacao_iniciar_entrada.php">
 											<center>
-											<p><b>ENTRADAS</b></p>
+											<p><b>ENTRADA</b></p>
 											<p>Número do Contrato <br>
 												<input type="text" name="idContrato" id="idContrato" required="">
 											</p>
-											<input type="submit" name="btnIniciarEntrada" id="btnIniciarEntrada" value="Iniciar Entradas">
+											<input type="submit" name="btnIniciarEntrada" id="btnIniciarEntrada" value="Iniciar Entrada">
 											</center>
 										</form>
 									</td>

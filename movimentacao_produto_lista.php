@@ -14,42 +14,63 @@ include_once "Controller/MovimentacaoController.php";
 					<section>
 						<header class="main">
 							<div class="row">
-								<div class="col-12">
-									<h1>Produtos Contrato: <?php echo $_GET['idContrato']; ?></h1>
+								<div class="col-8">
+									<h1>Itens do Contrato <?php echo $_GET['idContrato']; ?></h1>
 									<h3>Status: <?php echo ($_GET['status'] == 'S') ? 'Saída' : 'Entrada'; ?></h3>
+								</div>
+								<div class="col-4">
+									<a class="button" href="movimentacao_lista.php">VOLTAR</a>
 								</div>
 							</div>
 						</header>
 						<center>
-							<table border=0>
-								<tr>
-									<td>ID</td>
-									<td>Produto</td>
-									<td>RFID</td>
-								</tr>
-
-
-								<?php
-								$dados = MovimentacaoController::getProdutosByMovimentacao($_GET['idContrato']);
-								while ($linha = mysqli_fetch_array($dados)) {
-									?>
-									<td> <?= $linha["idProduto"]; ?> </td>
-									<td> <?= $linha["nomeProd"]; ?> </td>
-									<td> <?= $linha["rfid"]; ?> </td>
-
+							<div>
+								<h2>Itens do Contrato</h2>
+								<table>
+									<tr>
+										<th>ID</th>
+										<th>Produto</th>
+										<th>Quantidade</th>
 									</tr>
+		
+									<?php $dados = MovimentacaoController::getProdutosByMovimentacao($_GET['idContrato']); ?>
+									<?php while ($linha = mysqli_fetch_array($dados)): ?>
 
-								<?php
+										<tr>
+											<td> <?= $linha["idProduto"]; ?> </td>
+											<td> <?= $linha["nomeProd"]; ?> </td>
+											<td> <?= $linha["quantidade"]; ?> </td>
+										</tr>
 
-							}
+									<?php endwhile; ?>
+								</table>
+							</div>
 
-							?>
+							<div>								
+								
+								<?php $dadosItensNaoRetornados = MovimentacaoController::getProdutosNaoRetornadosByContrato($_GET['idContrato']); ?>
+								<?php if(mysqli_num_rows($dadosItensNaoRetornados) > 0): ?>
+										
+									<h2 class="text-left" >Itens não Retornados</h2>
+									<table>
+										<tr>
+											<th>ID</th>
+											<th>Produto</th>
+											<th>Etiqueta</th>
+										</tr>
 
-								<tr>
+										<?php while ($linha = mysqli_fetch_array($dadosItensNaoRetornados)): ?>
 
+										<tr>
+											<td> <?= $linha["idProduto"]; ?> </td>
+											<td> <?= $linha["nomeProd"]; ?> </td>
+											<td> <?= $linha["rfid"]; ?> </td>
+										</tr>
 
-								</tr>
-							</table>
+										<?php endwhile; ?>
+									<?php endif; ?>
+								</table>
+							</div>
 						</center>
 					</section>
 

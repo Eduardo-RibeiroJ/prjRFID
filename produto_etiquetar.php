@@ -3,6 +3,7 @@
 include_once "Model/Conexao.php";
 include_once "Model/Produto.php";
 include_once "Controller/ProdutoController.php";
+include_once "Controller/EtiquetaController.php";
 
 $cn = new Conexao();
 $cp = new Produto();
@@ -12,6 +13,10 @@ $cp = new Produto();
 	$pc = new ProdutoController($cn);
 	$query = $pc->Listar($cp);
 	$reg = $query->fetch_array();
+
+	if(isset($_GET['excluir'])) {
+		EtiquetaController::deletarEtiquetaTemp($_GET['excluir']);
+	}
 
 ?>
 
@@ -27,7 +32,7 @@ $cp = new Produto();
 						<header class="main">
 							<div class="row">
 								<div class="col-8">
-									<h3>Adicionar Etiquetas</h3>
+									<h2>Adicionar Etiquetas</h2>
 								</div>
 								<div class="col-4">
 									<a class="button" href="produto_etiquetar_finalizar.php?idProduto=<?=$reg["idProduto"];?>">Salvar</a>
@@ -38,22 +43,20 @@ $cp = new Produto();
 
 							<table>
 								<tr>
-									<td><strong>Nome do Produto</strong></td>
-									<td><strong>ID do Produto</strong></td>
+									<th>Nome do Produto</th>
+									<th>ID do Produto</th>
 								</tr>
 								<tr>
-									<td><?php echo $reg['nomeProd']; ?></td>
-									<td><?php echo $reg['idProduto']; ?></td>
+									<td><?= $reg['nomeProd']; ?></td>
+									<td id="idProduto" data-idProduto="<?= $reg['idProduto']; ?>"> <?= $reg['idProduto']; ?></td>
 								</tr>
 							</table>
 
-							<table border="1">
-								<thead>
+							<table>
 									<tr>
-										<td><strong>RFID</strong></td>
-										<!-- <td><strong>Remover</strong></td> -->
+										<th>Etiqueta RFID</th>
+										<th></th>
 									</tr>
-								</thead>
 								<tbody border="1" id="tabetiquetas">
 
 								</tbody>

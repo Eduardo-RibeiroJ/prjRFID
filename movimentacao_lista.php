@@ -29,35 +29,32 @@ if (isset($_GET['idContrato']) && isset($_GET['acao'])) {
 						<center>
 							<table border=0>
 								<tr>
-									<td>N° Contrato</td>
-									<td>Total de Produto</td>
-									<td>Situação</td>
-									<td> </td>
-									<!-- <td> </td> -->
-									<!-- <td> </td> -->
+									<th>N° Contrato</th>
+									<th>Total de Itens</th>
+									<th>Hora da Saída</th>
+									<th>Hora da Entrada</th>
+									<th></th>
 								</tr>
 
 								<?php $dados = MovimentacaoController::getMovimentacao(); ?>
 								<?php if($dados): ?>
 									<?php while ($linha = mysqli_fetch_array($dados)): ?>
+										
+										<tr>
+											<td> <?= $linha["idContrato"]; ?> </td>
+											<td> <?= $linha["total"]; ?> </td>
+											<td> <?= $linha['horaSaida']; ?> </td>
+											<td> <?= $linha['horaEntrada'] != NULL ? $linha['horaEntrada'] : 'Não retornou'; ?> </td>
 
-										<td> <?= $linha["idContrato"]; ?> </td>
-										<td> <?= $linha["total"]; ?> </td>
-										<td> <?= $linha["status"]; ?> </td>
-
-										<center>
-											<td> <a href="movimentacao_produto_lista.php?status=<?= $linha["status"]; ?>&idContrato=<?= $linha["idContrato"]; ?>">Ver Produtos</a> </td>
-											<!-- <td> <a href="#">Editar</a> </td> -->
-											<!-- <td> <a href="?acao=excluir&idContrato=1">Apagar</a> </td> -->
-										</center>
+											<center>
+												<td> <a href="movimentacao_produto_lista.php?status=<?= $linha["status"]; ?>&idContrato=<?= $linha["idContrato"]; ?>">Ver Produtos</a></td>
+											</center>
 
 										</tr>
 
 									<?php endwhile; ?>
 								<?php endif; ?>
-								<tr>
 
-								</tr>
 							</table>
 						</center>
 					</section>

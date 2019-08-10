@@ -21,37 +21,28 @@ if(isset($_GET['rfid']) && isset($_GET['acao'])) {
 						<header class="main">
 							<div class="row">
 								<div class="col-8">
-									<h1>Listar Etiquetas</h1>
-								</div>
-								<div class="col-4">
+									<h1>Etiquetas</h1>
 								</div>
 							</div>
 						</header>
-						<center>
-							<table border=0>
+							<table>
 								<tr>
-									<td>RFID</td>
-									<td>Nome Produto</td>
-									<td> </td>
-									<td> </td>
+									<th>RFID</th>
+									<th>Nome Produto</th>
+									<th> </th>
 								</tr>
-								<tr>
-									<?php
-									$dados = EtiquetaController::getEtiquetas();
-									while ($dados && $linha = mysqli_fetch_array($dados)) {
-										?>
+
+								<?php $dados = EtiquetaController::getEtiquetas(); ?>
+								<?php while ($dados && $linha = mysqli_fetch_array($dados)): ?>
+									<tr>
 										<td> <?= $linha["rfid"]; ?> </td>
 										<td> <?= $linha["nomeProd"]; ?> </td>
-
 										<center>
-											<td></td>
 											<td> <a href="?acao=1&rfid=<?= $linha["rfid"]; ?>">Apagar</a> </td>
 										</center>
-
 									</tr>
-								<?php  } ?>
+								<?php endwhile; ?>
 							</table>
-						</center>
 					</section>
 
 				<!-- inner -->

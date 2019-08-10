@@ -18,29 +18,26 @@ class EtiquetaController {
 					from tbEtiqueta inner join tbProduto on tbProduto.idProduto = tbEtiqueta.idProduto ".$rfidWhere;
 
 			$db = new Conexao();
-			$dados = mysqli_query($db->getConection(),$sql); 
+			$dados = mysqli_query($db->getConection(), $sql); 
 	       
-	       if($json){	       	
+	       	if($json) {	       	
        			$linha = mysqli_fetch_object($dados);
        			return json_encode($linha, true);
-	       }else{	    
-	       	
+	       	} else {
     			return $dados;
-	       }
-   }
-
-   
+	       	}
+   	}
 
 	public static function deletarEtiquetas($rfid){
 
 		if(!empty($rfid))
 		{
-		   try {
+		   	try {
 
 				$sql = "DELETE FROM tbEtiqueta  WHERE rfid = '".$rfid."'";
 
 				$db = new Conexao();
-				$dados = mysqli_query($db->getConection(),$sql); 
+				$dados = mysqli_query($db->getConection(), $sql); 
 
 				return true;
 				
@@ -49,6 +46,25 @@ class EtiquetaController {
 
 		return false;
    }
+
+   public static function deletarEtiquetaTemp($rfid) {
+
+		if(!empty($rfid))
+		{
+		   	try {
+
+				$sql = "DELETE FROM tbTemp WHERE etiqueta = '".$rfid."'";
+
+				$db = new Conexao();
+				$dados = mysqli_query($db->getConection(), $sql); 
+
+				return true;
+				
+			} catch (Exception $e) { } 
+		} 
+
+		return false;
+   	}
 
    public static function etiquetar($idProduto) {
 
@@ -71,7 +87,5 @@ class EtiquetaController {
 				$db = new Conexao();
 				$dados = mysqli_query($db->getConection(),$sql_temp);
    		}
-
 	}
-
 }

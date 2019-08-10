@@ -18,8 +18,8 @@
 					<section>
 						<header class="main">
 							<div class="row">
-								<div class="col-12 text-center center">
-									<h3>Etiquetagem Realizada com Sucesso</h3>
+								<div class="col-12">
+									<h2>Etiquetagem Realizada com Sucesso</h2>
 								</div> 
 								<div class="col-12">
 									<a class="button" href="etiquetas_lista.php">Etiquetas</a>

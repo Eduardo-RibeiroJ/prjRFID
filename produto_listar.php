@@ -29,7 +29,7 @@ if(isset($_GET['apagar']) && isset($_GET['idProduto'])) {
 						<header class="main">
 							<div class="row">
 								<div class="col-8">
-									<h1>Listar Produtos</h1>
+									<h1>Produtos</h1>
 								</div>
 								<div class="col-4">
 									<a class="button" href="produto_inserir.php">Inserir Novo Produto</a>
@@ -37,18 +37,17 @@ if(isset($_GET['apagar']) && isset($_GET['idProduto'])) {
 							</div>
 						</header>
 						<center>
-							<table border=0>
+							<table>
 								<tr>
-									<td>ID Produto</td>
-									<td>Nome Produto</td>
-									<td>Personalizado</td>
-									<td>Cor</td>
-									<td>Observações</td>
-									<td>Quantidade Total</td>
-									<td>Quantidade Disponível</td>
-									<td> </td>
-									<td> </td>
-									<td> </td>
+									<th>ID Produto</th>
+									<th>Nome Produto</th>
+									<th>Personalizado</th>
+									<th>Cor</th>
+									<th>Quantidade Total</th>
+									<th>Quantidade Disponível</th>
+									<th> </th>
+									<th> </th>
+									<th> </th>
 								</tr>
 
 								<?php
@@ -56,17 +55,17 @@ if(isset($_GET['apagar']) && isset($_GET['idProduto'])) {
 									$cp = new Produto();
 									$pc = new ProdutoController($cn);
 									$query = $pc->Listar($cp);
-									while($reg = $query->fetch_array()) {
+
 								?>
+								<?php while($reg = $query->fetch_array()): ?>
 
 								<tr>
-									<td> <?=$reg["idProduto"];?> </td>
-									<td> <?=$reg["nomeProd"];?> </td>		
-									<td> <?=$reg["personalizado"];?> </td>		
-									<td> <?=$reg["cor"];?> </td>		
-									<td> <?=$reg["obs"];?> </td>		
-									<td> <?=$reg["quantTotal"];?> </td>		
-									<td> <?=$reg["quantDisponivel"];?> </td>
+									<td> <?= $reg["idProduto"];?> </td>
+									<td> <?= $reg["nomeProd"];?> </td>		
+									<td> <?= $reg['personalizado'] == '1' ? 'Sim' : 'Não' ?> </td>
+									<td> <?= $reg["cor"];?> </td>			
+									<td> <?= $reg["quantTotal"];?> </td>		
+									<td> <?= $reg["quantDisponivel"];?> </td>
 									
 									<center>
 										<td> <a href="produto_alterar.php?idProduto=<?=$reg["idProduto"];?>">Alterar</a> </td>
@@ -75,11 +74,8 @@ if(isset($_GET['apagar']) && isset($_GET['idProduto'])) {
 									</center>
 								</tr>
 									
-								<?php 
+								<?php endwhile; ?>
 
-								}
-
-								?>
 							</table>
 						</center>
 					</section>
