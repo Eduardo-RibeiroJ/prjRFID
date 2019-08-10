@@ -2,14 +2,14 @@ $(document).ready(function(){
 
 	function atualiza_retornados(){
 		var id_contrato = $('#tbContrato').attr("data-idContrato");
+		
 		$.ajax({
 			type:'get',	 
 			dataType: 'json', 
 			url: 'dadosJson.php?acao=retornados&id_contrato=' + id_contrato,
 			success: function(dados){
 				
-				data = JSON.parse(JSON.stringify(dados));
-				
+				data = JSON.parse(JSON.stringify(dados));		
 				$(data).each(function(dadosProduto) {
 					var td = $('.item-' + dadosProduto.idProduto ).find('.retornados');
 					$(td).text(dadosProduto.retornados);
@@ -20,6 +20,7 @@ $(document).ready(function(){
 					}else{
 						$(status).attr('src', 'images/BolaVermelha.png');
 					}
+
 				});
 				
 			}
@@ -27,7 +28,6 @@ $(document).ready(function(){
 	}
 
 	function atualiza_movimentacao_entrada() {
-
 		var id_contrato = $('#tbContrato').attr("data-idContrato");
 
 		$.ajax({
@@ -37,7 +37,6 @@ $(document).ready(function(){
 			success: function(dados){
 				
 				dados = JSON.parse(JSON.stringify(dados));
-
 				var Produtos = {};
 				$(dados).each(function(key, dadosProd) {
 					if( Produtos[dadosProd.idProduto] === undefined ){
@@ -66,9 +65,7 @@ $(document).ready(function(){
 	}
 
 	function atualiza_movimentacao_saida() {
-
 		var id_contrato = $('#tbContrato').attr("data-idContrato");
-
 		$.ajax({
 			type:'get',	 
 			dataType: 'json', 
@@ -163,10 +160,16 @@ $(document).ready(function(){
 		});
 	});
 
-	var tet = setInterval(atualiza_etiquetagem, 2000);
-	var tame = setInterval(atualiza_movimentacao_saida, 2000);
-	var tams = setInterval(atualiza_movimentacao_entrada, 2000);
-	var tvi = setInterval(verificarItens, 2000);
-	var tre = setInterval(atualiza_retornados, 2000);
+	var path = window.location.pathname;
+	var location = path.split('/').pop();
 
+	if(location === 'movimentacao_iniciar_saida.php'){
+		var tame = setInterval(atualiza_movimentacao_saida, 2000);
+	}else if(location === 'movimentacao_iniciar_entrada.php'){
+		var tams = setInterval(atualiza_movimentacao_entrada, 2000);
+		var tvi = setInterval(verificarItens, 2000);s
+		var tre = setInterval(atualiza_retornados, 2000);
+	}else if(location === 'produto_etiquetar.php'){
+		var tet = setInterval(atualiza_etiquetagem, 2000);
+	}
 });
