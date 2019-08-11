@@ -62,6 +62,8 @@ VALUES
 ("Luminária",0,"Amarelo",NULL,10,10),
 ("Tapete",1,"Vermelho",NULL,5,5);
 
+/*SENHA 12345*/
+INSERT INTO `tbusuario`(`nomeUsuario`, `email`, `senha`, `nivel`) VALUES ("Administrador", "admin@admin.com", "$2a$08$MTgyODQyNTY2NDVkNTA0Muui7NVqLstAZvj6tAku1IWiF6g7UDFMi", 1);
 
 
 /****************** Alterações (Só executar quem tem o BD antigo) */
