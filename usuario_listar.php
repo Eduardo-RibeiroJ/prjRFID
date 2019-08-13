@@ -13,7 +13,7 @@ if(isset($_GET['apagar']) && isset($_GET['idUsuario'])) {
 	$uController = new UsuarioController($conn);
 	$uController->Apagar($usuario);
 
-	echo "<script> alert('Usuário removido!'); window.location.replace('usuarios_listar.php'); </script>";
+	echo "<script> alert('Usuário removido!'); window.location.replace('usuario_listar.php'); </script>";
 }
 ?>
 
@@ -32,7 +32,7 @@ if(isset($_GET['apagar']) && isset($_GET['idUsuario'])) {
 									<h1>Usuários</h1>
 								</div>
 								<div class="col-4">
-									<a class="button" href="usuario_inserir.php">INSERIR USUÁRIO</a>
+									<a class="button" href="usuario_inserir.php">INSERIR NOVO USUÁRIO</a>
 									</div>
 							</div>
 						</header>
@@ -59,10 +59,10 @@ if(isset($_GET['apagar']) && isset($_GET['idUsuario'])) {
 									<td> <?= $reg["idUsuario"];?> </td>
 									<td> <?= $reg["nomeUsuario"];?> </td>
 									<td> <?= $reg["email"];?> </td>
-									<td> <?= $reg["nivel"];?> </td>								
+									<td> <?= $reg['nivel'] == '1' ? 'Administrador' : 'Colaborador' ?> </td>
 									
 									<center>
-										<td> <a href="usuario_alterar.php?idUsuario=<?=$reg["idUsuario"];?>">Alterar</a> </td>
+										<td> <a href="usuario_alterar.php?idUsuario=<?=$reg["idUsuario"];?>">Alterar Senha</a> </td>
 										<td> <a href="?idUsuario=<?=$reg["idUsuario"];?>&apagar=1">Apagar</a> </td>
 									</center>
 								</tr>

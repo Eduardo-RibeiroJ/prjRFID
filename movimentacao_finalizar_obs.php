@@ -22,7 +22,7 @@
 										<h2>Iniciar Entrada Contrato <?php echo $_GET['idContrato'] ?></h2>
 									</div>
 									<div class="col-4">
-										<input class="button" type="submit" value="FINALIZAR" />
+										<input type="submit" value="FINALIZAR" />
 									</div>
 								</div>
 							</header>

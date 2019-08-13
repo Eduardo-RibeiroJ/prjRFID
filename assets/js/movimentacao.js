@@ -134,6 +134,27 @@ $(document).ready(function(){
 	}
 
 	/**
+	 * Atualiza a lista de etiquetas da tabela tbTemp.
+	 */
+	function atualiza_etiquetagem_identificar() { 
+
+		$('#tabetiquetas').empty();
+		$.ajax({
+			type:'get',	 
+			dataType: 'json', 
+			url: 'dadosJson.php?acao=tempetiquetas', 
+			success: function(dados){
+				
+				dados = JSON.parse(JSON.stringify(dados));
+				
+				for(var i in dados) {
+					$('#tabetiquetas').append('<tr><td>'+dados[i].etiqueta+'</td><td><a href="?excluir='+ dados[i].etiqueta +'">Remover</a> </td></tr>');
+				}
+			}
+		});
+	}
+
+	/**
 	 * Verifica o status dos itens retornados na lista de produtos que estão entrando.
 	 */
 	function verificarItens() { 
@@ -171,9 +192,9 @@ $(document).ready(function(){
 			success: function(ret){
 				if(ret > 0){
 					$('.rowProd-' + id).remove();
-					alert('Removido com sucesso');
+					alert('Produtos removidos!');
 				}else{
-					alert('Erro ao remover produto');
+					alert('Erro ao remover produto!');
 				}
 			}
 		});
@@ -185,13 +206,16 @@ $(document).ready(function(){
 	var path = window.location.pathname;
 	var location = path.split('/').pop();
 
-	if(location === 'movimentacao_iniciar_saida.php'){
+	if(location === 'movimentacao_iniciar_saida.php') {
 		var tame = setInterval(atualiza_movimentacao_saida, 2000);
-	}else if(location === 'movimentacao_iniciar_entrada.php'){
+	} else if(location === 'movimentacao_iniciar_entrada.php') {
 		var tams = setInterval(atualiza_movimentacao_entrada, 2000);
-		var tvi = setInterval(verificarItens, 2000);s
+		var tvi = setInterval(verificarItens, 2000);
 		var tre = setInterval(atualiza_retornados, 2000);
-	}else if(location === 'produto_etiquetar.php'){
+	} else if(location === 'produto_etiquetar.php') {
 		var tet = setInterval(atualiza_etiquetagem, 2000);
+	} else if(location === 'etiquetas_identificar.php') {
+		var tet = setInterval(atualiza_etiquetagem_identificar, 2000);
 	}
+
 });

@@ -28,6 +28,22 @@ class EtiquetaController {
 	       	}
    	}
 
+
+   	public static function getEtiquetasByProduto($idProduto) {
+
+		if(!empty($idProduto)) {
+		
+			$sql = "select rfid 
+					from tbEtiqueta
+					where idProduto = '".$idProduto."' ORDER BY rfid";
+
+			$db = new Conexao();
+			$dados = mysqli_query($db->getConection(), $sql); 
+	       
+    		return $dados;
+	    }
+   	}
+
 	public static function deletarEtiquetas($rfid){
 
 		if(!empty($rfid))

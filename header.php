@@ -60,7 +60,7 @@ if(empty($_SESSION['admin'])){
 							<a href="index.php" class="logo"><strong>Estoque</strong> RFID</a>
 						</div>
 						<div class="col-6 align-right logo">
-							Bem vindo(a) <strong><?php echo $_SESSION['nomeUsuario']; ?></strong> - <a href="logout.php">Sair</a>
+							Bem-vindo(a) <strong><?php echo $_SESSION['nomeUsuario']; ?></strong> - <a href="logout.php">Sair</a>
 						</div>
 				</header>
 

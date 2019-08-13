@@ -14,9 +14,11 @@ $contrato = MovimentacaoController::verificaContrato($idContrato);
 
 if(mysqli_num_rows($contrato) > 0)
 {
-	echo "<script>alert('O contrato $idContrato já existe'); window.location.replace('movimentacao.php'); </script>";
+	echo "<script>alert('O contrato $idContrato já existe!'); window.location.replace('movimentacao.php'); </script>";
 	die;
 }
+
+MovimentacaoController::apagarTemp();
 
 ?>
 

@@ -8,14 +8,17 @@ $contrato = MovimentacaoController::verificaContrato($idContrato);
 $linha = mysqli_fetch_array($contrato);
 
 if(mysqli_num_rows($contrato) == 0) {
-	echo "<script>alert('O contrato $idContrato não existe'); window.location.replace('movimentacao.php'); </script>";
+	echo "<script>alert('O contrato $idContrato não existe!'); window.location.replace('movimentacao.php'); </script>";
 	die;
 }
 
 if ($linha['status'] == 'E') {
-	echo "<script>alert('O contrato $idContrato já foi encerrado'); window.location.replace('movimentacao.php'); </script>";
+	echo "<script>alert('O contrato $idContrato já foi encerrado!'); window.location.replace('movimentacao.php'); </script>";
 	die;
 }
+
+MovimentacaoController::apagarTemp();
+
 ?>
 
 <?php include_once 'header.php'; ?>

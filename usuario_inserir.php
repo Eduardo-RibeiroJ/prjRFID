@@ -51,7 +51,7 @@ if (isset($_POST['btnInserir'])) {
 
 											<p>
 												<label for="nome">Nome</label>
-												<input type="text" placeholder="Insira o nome..." required="" name="nome" id="nome" />
+												<input type="text" placeholder="Insira o nome..." required="" name="nome" id="nome" autofocus/>
 											</p> 
 
 
