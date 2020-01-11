@@ -82,3 +82,5 @@ ALTER TABLE tbContrato ADD horaEntrada datetime;
 ALTER TABLE tbEtiqueta CHANGE rfid rfid varchar(50) not null;
 ALTER TABLE tbItensContrato CHANGE rfidProduto rfidProduto varchar(50) not null;
 ALTER TABLE tbTemp CHANGE etiqueta etiqueta varchar(50) not null;
+
+ALTER TABLE `tbtemp` ADD `data_criacao` DATETIME NULL AFTER `etiqueta`;
