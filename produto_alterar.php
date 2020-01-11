@@ -4,12 +4,12 @@ include_once "Model/Conexao.php";
 include_once "Model/Produto.php";
 include_once "Controller/ProdutoController.php";
 
-$cn = new Conexao();
-$cp = new Produto();
+$conn = new Conexao();
+$produto = new Produto();
 
 if (isset($_POST['btnAlterar'])) {
 
-	$cp->atualizarProduto(
+	$produto->atualizarProduto(
 		$_GET['idProduto'],
 		$_POST['nomeProd'],
 		$_POST['personalizado'] = (isset($_POST['personalizado'])) ? 1 : 0,
@@ -18,14 +18,14 @@ if (isset($_POST['btnAlterar'])) {
 		$_POST['quantTotal']
 	);
 
-	$pc = new ProdutoController($cn);
-	$pc->Atualizar($cp);
-	echo "<script> alert('Produto Alterado!'); window.location.replace('produto_listar.php'); </script>";
+	$produtoController = new ProdutoController($conn);
+	$produtoController->Atualizar($produto);
+	echo "<script> alert('Produto alterado!'); window.location.replace('produto_listar.php'); </script>";
 } else { //Aqui puxa os valores do banco de dados para os campos correspondentes
 
-	$cp->setIdProduto($_GET['idProduto']);
-	$pc = new ProdutoController($cn);
-	$query = $pc->Listar($cp);
+	$produto->setIdProduto($_GET['idProduto']);
+	$produtoController = new ProdutoController($conn);
+	$query = $produtoController->Listar($produto);
 	$reg = $query->fetch_array();
 }
 ?>

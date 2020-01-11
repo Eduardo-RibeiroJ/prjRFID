@@ -21,7 +21,7 @@
 
 									<p>
 										<label for="login">Login</label>
-										<input type="email" placeholder="Insira o seu e-mail" required="required" name="login" id="login" />
+										<input type="email" placeholder="Insira o seu e-mail" required="required" name="login" id="login" autofocus/>
 									</p>  
 									<p>
 										<label for="senha">Senha</label>

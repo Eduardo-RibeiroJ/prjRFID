@@ -2,11 +2,14 @@
 include_once "Model/Conexao.php";
 include_once "Controller/EtiquetaController.php";
 
-if(isset($_GET['rfid']) && isset($_GET['acao'])) {
-	if(EtiquetaController::deletarEtiquetas($_GET['rfid'])){
-		echo "<script> alert('Etiqueta deletada!'); window.location.replace('etiquetas_lista.php'); </script>";
-	}
+if(isset($_GET['rfid']) && isset($_GET['acao']) && isset($_GET['idProduto']) && isset($_GET['nomeProd'])) {
+	EtiquetaController::deletarEtiquetas($_GET['rfid']);
+	echo "<script> alert('Etiqueta removida!'); </script>";
 }
+
+$idProduto = $_GET["idProduto"];
+$nomeProd = $_GET["nomeProd"];
+
 ?>
 
 <?php include_once 'header.php'; ?>
@@ -21,24 +24,41 @@ if(isset($_GET['rfid']) && isset($_GET['acao'])) {
 						<header class="main">
 							<div class="row">
 								<div class="col-8">
-									<h1>Etiquetas</h1>
+									<h1>Visualizar Etiquetas</h1>
+								</div>
+
+								<div class="col-4">
+									<a class="button" href="produto_listar.php">VOLTAR</a>
 								</div>
 							</div>
 						</header>
+
+							<div class="col-12">
+								<table>
+									<tr>
+										<th>Nome do Produto</th>
+										<th>ID do Produto</th>
+									</tr>
+									<tr>
+										<td><?= $nomeProd; ?></td>
+										<td><?= $idProduto; ?></td>
+									</tr>
+								</table>
+							</div>
+
 							<table>
 								<tr>
-									<th>RFID</th>
-									<th>Nome Produto</th>
+									<th>Etiquetas</th>
 									<th> </th>
 								</tr>
 
-								<?php $dados = EtiquetaController::getEtiquetas(); ?>
-								<?php while ($dados && $linha = mysqli_fetch_array($dados)): ?>
+								<?php $dados = EtiquetaController::getEtiquetasByProduto($idProduto); ?>
+								<?php while ($reg = mysqli_fetch_array($dados)): ?>
 									<tr>
-										<td> <?= $linha["rfid"]; ?> </td>
-										<td> <?= $linha["nomeProd"]; ?> </td>
+										<td> <?= $reg["rfid"];?> </td>
+
 										<center>
-											<td> <a href="?acao=1&rfid=<?= $linha["rfid"]; ?>">Apagar</a> </td>
+											<td> <a href="?acao=1&rfid=<?= $reg["rfid"]; ?>&idProduto=<?= $idProduto; ?>&nomeProd=<?= $nomeProd; ?>">Remover</a> </td>
 										</center>
 									</tr>
 								<?php endwhile; ?>

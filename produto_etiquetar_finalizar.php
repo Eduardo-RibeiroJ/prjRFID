@@ -22,7 +22,7 @@
 									<h2>Etiquetagem Realizada com Sucesso</h2>
 								</div> 
 								<div class="col-12">
-									<a class="button" href="etiquetas_lista.php">Etiquetas</a>
+									<a class="button" href="etiquetas.php">Etiquetas</a>
 									</div>
 							</div>
 						</header>

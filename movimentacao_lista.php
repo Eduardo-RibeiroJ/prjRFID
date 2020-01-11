@@ -2,12 +2,6 @@
 include_once "Model/Conexao.php";
 include_once "Controller/MovimentacaoController.php";
 
-if (isset($_GET['idContrato']) && isset($_GET['acao'])) {
-
-	MovimentacaoController::deletarMovimentacao($_GET['idContrato']);
-	
-	echo "<script> alert('Movimentação deletada!'); window.location.replace('movimentacao_lista.php'); </script>";
-}
 ?>
 
 <?php include_once 'header.php'; ?>
@@ -21,8 +15,11 @@ if (isset($_GET['idContrato']) && isset($_GET['acao'])) {
 					<section>
 						<header class="main">
 							<div class="row">
-								<div class="col-12">
+								<div class="col-8">
 									<h1>Movimentações</h1>
+								</div>
+								<div class="col-4">
+									<a class="button" href="movimentacao.php">INICIAR MOVIMENTAÇÃO</a>
 								</div>
 							</div>
 						</header>

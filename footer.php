@@ -21,7 +21,7 @@
 								<span class="opener">Movimentações</span>
 								<ul>
 									<li><a href="movimentacao.php">Iniciar Movimentação</a></li>
-									<li><a href="movimentacao_lista.php">Listagem</a></li>
+									<li><a href="movimentacao_lista.php">Listar Movimentações</a></li>
 									
 								</ul>
 							</li>
@@ -30,10 +30,13 @@
 								<a href="produto_listar.php">Produtos</a>									
 							</li>
 							<li>
-								<a href="etiquetas_listar.php">Etiquetas</a>											
+								<span class="opener">Etiquetas</span>	
+								<ul>
+									<li><a href="etiquetas_identificar.php">Identificar Etiquetas</a></li>
+								</ul>									
 							</li>
 							<li>
-								<a href="usuarios_listar.php">Usuários</a>											
+								<a href="usuario_listar.php">Usuários</a>											
 							</li>
 							<!-- PODEMOS DEIXAR PARA UMA SEGUNDA ETAPA
 							<li>

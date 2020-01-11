@@ -4,6 +4,7 @@ include_once "Model/Conexao.php";
 include_once "Model/Produto.php";
 include_once "Controller/ProdutoController.php";
 include_once "Controller/EtiquetaController.php";
+include_once "Controller/MovimentacaoController.php";
 
 $cn = new Conexao();
 $cp = new Produto();
@@ -17,7 +18,10 @@ $cp = new Produto();
 	if(isset($_GET['excluir'])) {
 		EtiquetaController::deletarEtiquetaTemp($_GET['excluir']);
 	}
-
+	else {
+		MovimentacaoController::apagarTemp();
+	}
+	
 ?>
 
 <?php include_once 'header.php'; ?>
@@ -32,7 +36,7 @@ $cp = new Produto();
 						<header class="main">
 							<div class="row">
 								<div class="col-8">
-									<h2>Adicionar Etiquetas</h2>
+									<h1>Adicionar Etiquetas</h1>
 								</div>
 								<div class="col-4">
 									<a class="button" href="produto_etiquetar_finalizar.php?idProduto=<?=$reg["idProduto"];?>">Salvar</a>
@@ -54,7 +58,7 @@ $cp = new Produto();
 
 							<table>
 									<tr>
-										<th>Etiqueta RFID</th>
+										<th>Etiquetas</th>
 										<th></th>
 									</tr>
 								<tbody border="1" id="tabetiquetas">

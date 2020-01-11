@@ -1,10 +1,33 @@
 <?php
 
 include_once "Model/Conexao.php";
-include_once "Model/Produto.php";
-include_once "Controller/ProdutoController.php";
+include_once "Model/Usuario.php";
+include_once "Controller/UsuarioController.php";
 
-if (isset($_POST['btnInserir'])) { 
+if (isset($_POST['btnInserir'])) {
+
+
+	if($_POST['senha'] != $_POST['senha_confirmacao']) {
+		echo "<script>window.alert('As senhas não conferem'); history.go(-1); </script>";
+		die;
+	}
+	$conn = new Conexao();
+	$usuario = new Usuario();
+
+	$usuario->inserirUsuario(
+		$_POST['nome'],
+		$_POST['email'],
+		$_POST['senha'],
+		$_POST['nivel']
+	);
+
+	$uController = new UsuarioController($conn);
+	$uController->Inserir($usuario);
+	echo "<script> alert('Usuário cadastrado!'); window.location.replace('usuario_listar.php'); </script>";
+
+
+
+	
 }
 ?>
 
@@ -24,16 +47,16 @@ if (isset($_POST['btnInserir'])) {
 							<table border=0>
 								<tr>
 									<td>
-										<form action="produto_inserir.php" method="post">
+										<form action="usuario_inserir.php" method="post">
 
 											<p>
 												<label for="nome">Nome</label>
-												<input type="text" placeholder="Insira o nome..." required="required" name="nome" id="nome" />
+												<input type="text" placeholder="Insira o nome..." required="" name="nome" id="nome" autofocus/>
 											</p> 
 
 
 											<p>
-												<label for="email">E-mail(Login)</label>
+												<label for="email">E-mail (Login)</label>
 												<input type="email" placeholder="Insira o nome do produto..." required="required" name="email" id="email" />
 											</p> 
 
@@ -49,14 +72,12 @@ if (isset($_POST['btnInserir'])) {
 											</p> 
 
 											<p>
-												<label for="cbbCor">Nível</label>
-												<select name="cbbCor">
-													<option value="">Selecione</option>
-													<option value="0">Administrador</option>
-													<option value="1">Colaborador</option>
+												<label for="nivel">Nível</label>
+												<select name="nivel">
+													<option value="0">Colaborador</option>
+													<option value="1">Administrador</option>
 												</select>
 											</p>
-
 
 											<p>
 												<input type="submit" name="btnInserir" id="btnInserir" value="Inserir" />

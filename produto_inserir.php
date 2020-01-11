@@ -6,10 +6,10 @@ include_once "Controller/ProdutoController.php";
 
 if (isset($_POST['btnInserir'])) {
 
-	$cn = new Conexao();
-	$cp = new Produto();
+	$conn = new Conexao();
+	$produto = new Produto();
 
-	$cp->inserirProduto(
+	$produto->inserirProduto(
 		$_POST['txtNomeProduto'],
 		$_POST['ckbPersonalizado'] = (isset($_POST['ckbPersonalizado'])) ? 1 : 0,
 		$_POST['cbbCor'],
@@ -17,8 +17,8 @@ if (isset($_POST['btnInserir'])) {
 		$_POST['txtQuantidadeTotal']
 	);
 
-	$pc = new ProdutoController($cn);
-	$pc->Inserir($cp);
+	$produtoController = new ProdutoController($conn);
+	$produtoController->Inserir($produto);
 	echo "<script> alert('Produto cadastrado!'); window.location.replace('produto_listar.php'); </script>";
 }
 ?>
@@ -43,7 +43,7 @@ if (isset($_POST['btnInserir'])) {
 
 											<p>
 												<label for="txtNomeProduto">Nome do Produto</label>
-												<input type="text" placeholder="Insira o nome do produto..." required="required" name="txtNomeProduto" id="txtNomeProduto" />
+												<input type="text" placeholder="Insira o nome do produto..." required="required" name="txtNomeProduto" id="txtNomeProduto" autofocus/>
 											</p>
 
 											<p>

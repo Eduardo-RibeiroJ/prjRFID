@@ -4,8 +4,6 @@ include_once "Model/Conexao.php";
 include_once "Model/Bcrypt.php"; 
 class UsuarioController
 {
-
-    
     public function __construct(Conexao $db)
     {
         $this->db = $db;
@@ -25,7 +23,8 @@ class UsuarioController
             die(mysqli_error($this->db->getConection()));
         }
 
-        mysqli_stmt_bind_param($stmt, 'sssi', $nomeUsuario, $email, $senha, $nivel);
+		$senha_banco = Bcrypt::hash($senha);
+        mysqli_stmt_bind_param($stmt, 'sssi', $nomeUsuario, $email, $senha_banco, $nivel);
         mysqli_stmt_execute($stmt);
         mysqli_stmt_close($stmt);
 
@@ -47,10 +46,51 @@ class UsuarioController
             die(mysqli_error($this->db->getConection()));
         } 
         
-        mysqli_stmt_bind_param($stmt, 'sssii', $nomeUsuario, $email, $senha, $nivel, $idUsuario);
+		$senha_banco =  Bcrypt::hash($senha);
+        mysqli_stmt_bind_param($stmt, 'sssii', $nomeUsuario, $email, $senha_banco, $nivel, $idUsuario);
         mysqli_stmt_execute($stmt);
         mysqli_stmt_close($stmt);
 
+    }
+
+    public function MudarSenha(Usuario $usuario) 
+    { 
+        $idUsuario = $usuario->getIdUsuario();
+        $senha = $usuario->getSenha();
+
+        $query = "UPDATE tbUsuario SET senha=? WHERE idUsuario = ?";
+ 
+        $stmt = mysqli_prepare($this->db->getConection(), $query);
+
+        if($stmt === FALSE){
+            die(mysqli_error($this->db->getConection()));
+        } 
+        
+        $senha_banco =  Bcrypt::hash($senha);
+        mysqli_stmt_bind_param($stmt, 'si', $senha_banco, $idUsuario);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_close($stmt);
+
+    }
+
+    public function ConferirSenha(Usuario $usuario) 
+    { 
+        $response = false;
+
+        $sql = "SELECT * FROM tbUsuario WHERE email='".$usuario->getEmail()."' ;";
+        $db = new Conexao();
+        $dados = mysqli_query($db->getConection(), $sql);
+
+        if(mysqli_num_rows($dados)) {
+
+            $linha = mysqli_fetch_array($dados);
+
+            if(Bcrypt::check($usuario->getSenha(), $linha['senha'])) {
+
+                    return true;
+            }
+        }
+        return false;
     }
 
     public function Apagar(Usuario $usuario) {
@@ -79,7 +119,7 @@ class UsuarioController
         }
      }  
 
-     public static function  logar(){
+     public static function logar(){
 
         $response = false;
 

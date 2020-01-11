@@ -8,7 +8,7 @@ class MovimentacaoController {
 		
 			 $sql = "select count(tbItenscontrato.idContrato) as total, tbContrato.* from tbContrato
 					inner join tbItenscontrato on tbContrato.idContrato = tbItenscontrato.idContrato
-					group by tbContrato.idContrato";
+					group by tbContrato.idContrato ORDER BY horaSaida DESC";
 
 			$db = new Conexao();
 			$dados = mysqli_query($db->getConection(),$sql); 
@@ -124,7 +124,7 @@ class MovimentacaoController {
 
    public static function getTempEtiquetas($json = false){
 		
-			 $sql = "select DISTINCT etiqueta from tbTemp;";
+			$sql = "select DISTINCT etiqueta from tbTemp;";
 
 			$db = new Conexao();
 			$dados = mysqli_query($db->getConection(),$sql); 
@@ -260,6 +260,20 @@ class MovimentacaoController {
 		} 
    }
 
+   public static function apagarTemp() {
+		try {
+
+			$sql_temp = "TRUNCATE TABLE tbTemp";
+			$db = new Conexao();
+			$dados = mysqli_query($db->getConection(), $sql_temp);
+
+			return true;
+
+		} catch (Exception $e) {
+			return false;
+		} 
+   }
+
 	public static function deletarMovimentacao($idContrato) {
 
 		if(!empty($idContrato))
@@ -288,6 +302,7 @@ class MovimentacaoController {
 
 		if(!empty($status) && !empty($idContrato))
 		{
+
 			$db = new Conexao();
 
 			//PEGA TODOS OS TEMPORARIOS
@@ -336,10 +351,8 @@ class MovimentacaoController {
 
 			}
 
-			//APAGA A TEMP
-			$sql_temp = "TRUNCATE TABLE tbTemp";
-			$db = new Conexao();
-			$dados = mysqli_query($db->getConection(), $sql_temp); 
+			MovimentacaoController::apagarTemp();
+
    		}
 
 	}

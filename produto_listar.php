@@ -4,14 +4,17 @@ include_once "Model/Conexao.php";
 include_once "Model/Produto.php";
 include_once "Controller/ProdutoController.php";
 
-$cn = new Conexao();
-$cp = new Produto();
+$conn = new Conexao();
+$produto = new Produto();
+$produtoController = new ProdutoController($conn);
+$query = $produtoController->Listar($produto);
+
 
 if(isset($_GET['apagar']) && isset($_GET['idProduto'])) {
 
-	$cp->setIdProduto($_GET["idProduto"]);
-	$pc = new ProdutoController($cn);
-	$pc->Apagar($cp);
+	$produto->setIdProduto($_GET["idProduto"]);
+	$produtoController = new ProdutoController($conn);
+	$produtoController->Apagar($produto);
 
 	echo "<script> alert('Produto deletado!'); window.location.replace('produto_listar.php'); </script>";
 }
@@ -33,7 +36,7 @@ if(isset($_GET['apagar']) && isset($_GET['idProduto'])) {
 								</div>
 								<div class="col-4">
 									<a class="button" href="produto_inserir.php">Inserir Novo Produto</a>
-									</div>
+								</div>
 							</div>
 						</header>
 						<center>
@@ -48,15 +51,9 @@ if(isset($_GET['apagar']) && isset($_GET['idProduto'])) {
 									<th> </th>
 									<th> </th>
 									<th> </th>
+									<th> </th>
 								</tr>
 
-								<?php
-									$cn = new Conexao();
-									$cp = new Produto();
-									$pc = new ProdutoController($cn);
-									$query = $pc->Listar($cp);
-
-								?>
 								<?php while($reg = $query->fetch_array()): ?>
 
 								<tr>
@@ -71,6 +68,7 @@ if(isset($_GET['apagar']) && isset($_GET['idProduto'])) {
 										<td> <a href="produto_alterar.php?idProduto=<?=$reg["idProduto"];?>">Alterar</a> </td>
 										<td> <a href="?idProduto=<?=$reg["idProduto"];?>&apagar=1">Apagar</a> </td>
 										<td> <a href="produto_etiquetar.php?idProduto=<?=$reg["idProduto"];?>">Etiquetar</a> </td>
+										<td> <a href="etiquetas_listar.php?idProduto=<?=$reg["idProduto"]; ?>&nomeProd=<?=$reg["nomeProd"]; ?>">Visualizar Etiquetas</a> </td>
 									</center>
 								</tr>
 									
